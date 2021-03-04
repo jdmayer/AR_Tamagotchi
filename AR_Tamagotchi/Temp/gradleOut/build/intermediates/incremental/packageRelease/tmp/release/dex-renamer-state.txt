@@ -1,4 +1,0 @@
-#Sat Feb 27 09:24:31 CET 2021
-base.0=C\:\\Unity\\AR_Tamagotchi\\AR_Tamagotchi\\Temp\\gradleOut\\build\\intermediates\\transforms\\dexMerger\\release\\0
-path.0=classes.dex
-renamed.0=classes.dex

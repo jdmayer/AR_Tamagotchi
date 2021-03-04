@@ -1,0 +1,18 @@
+Micro Dragon
+* frame 001-005: bind pose
+* frame 006-060: idle(flying)
+* frame 061-080: bite
+* frame 081-100: get hit front
+* frame 101-120: get hit left
+* frame 121-140: get hit right
+* frame 141-210: panic
+* frame 211-250: swoop down
+* frame 251-270: loop da loop	
+* frame 271-310: land on ground
+* frame 311-346: die (air to ground)
+* frame 347-446: stirr on ground
+* frame 447-511: getup take off
+* frame 512-559: attack repeatedly
+* frame 560-650: dizzy
+* frame 651-728: talk
+* frame 729-791: laugh
