@@ -3,21 +3,25 @@
 /// Meters (m) are the chosen size of units
 /// </summary>
 /// 
-/// stones - our Tamagotchi "Fino"
-/// chips
-/// tarmac
-/// marker-01
-/// marker-02
-/// marker-03
-/// marker-04
-/// marker-05
-/// marker-06
-/// marker-07
-/// marker-08
-/// marker-09
-/// marker-10
-/// marker-11
-/// marker-12
-/// marker-13
-/// marker-14
-/// marker-15
+/// A4 - stones - ch - our Tamagotchi "Fino"
+/// A4 - chips
+/// A4 - tarmac
+/// A6 - marker-01
+/// A6 - marker-02
+/// A6 - marker-03
+/// A6 - marker-04
+/// A6 - marker-05
+/// A6 - marker-06
+/// A6-  marker-07
+/// A6 - marker-08
+/// A6 - marker-09
+/// A6 - marker-10 - vb - go on an adventure!
+/// A6 - marker-11
+/// A6 - marker-12
+/// A6 - marker-13
+/// A6 - marker-14
+/// A6 - marker-15
+/// 
+/// Legend
+/// ch - character
+/// vb - virtual button
