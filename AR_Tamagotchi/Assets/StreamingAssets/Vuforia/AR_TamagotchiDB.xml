@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="marker-15" size="0.150000 0.150000" />
+    <ImageTarget name="marker-14" size="0.150000 0.150000" />
+    <ImageTarget name="marker-13" size="0.150000 0.150000" />
+    <ImageTarget name="marker-12" size="0.150000 0.150000" />
+    <ImageTarget name="marker-11" size="0.150000 0.150000" />
+    <ImageTarget name="marker-10" size="0.150000 0.150000" />
+    <ImageTarget name="marker-09" size="0.150000 0.150000" />
+    <ImageTarget name="marker-08" size="0.150000 0.150000" />
+    <ImageTarget name="marker-07" size="0.150000 0.150000" />
+    <ImageTarget name="marker-06" size="0.150000 0.150000" />
+    <ImageTarget name="marker-05" size="0.150000 0.150000" />
+    <ImageTarget name="marker-04" size="0.150000 0.150000" />
+    <ImageTarget name="marker-03" size="0.150000 0.150000" />
+    <ImageTarget name="marker-01" size="0.150000 0.150000" />
+    <ImageTarget name="marker-02" size="0.150000 0.150000" />
     <ImageTarget name="tarmac" size="0.300000 0.210000" />
     <ImageTarget name="chips" size="0.300000 0.210000" />
     <ImageTarget name="stones" size="0.300000 0.210000" />
