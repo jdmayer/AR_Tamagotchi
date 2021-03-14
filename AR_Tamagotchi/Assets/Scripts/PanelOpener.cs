@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// Autor: Helena Wilde
+/// Autorin: Helena Wilde
 /// </summary>
 public class PanelOpener : MonoBehaviour
 {

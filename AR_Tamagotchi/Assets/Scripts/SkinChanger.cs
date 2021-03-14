@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Autor: Helena Wilde
+/// Autorin: Helena Wilde
 /// </summary>
 public class SkinChanger : MonoBehaviour
 {
@@ -12,7 +12,6 @@ public class SkinChanger : MonoBehaviour
     public Material materialGreen;
     public Material materialPink;
     public Material materialYellow;
-
 
     void Start()
     {
