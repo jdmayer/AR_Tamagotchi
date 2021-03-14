@@ -11,6 +11,9 @@ namespace Assets.Scripts
     {
         public GameObject adventureButton;
 
+        // TODO
+        // Set new Fino attributes
+        // not same as those used in Helenas Part
         void Start()
         {
             adventureButton.GetComponent<VirtualButtonBehaviour>().RegisterEventHandler(this);
