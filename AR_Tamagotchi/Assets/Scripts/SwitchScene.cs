@@ -11,23 +11,26 @@ namespace Assets.Scripts
     {
         public GameObject adventureButton;
 
-        // Start is called before the first frame update
         void Start()
         {
             adventureButton.GetComponent<VirtualButtonBehaviour>().RegisterEventHandler(this);
         }
 
-        // Update is called once per frame
         public void OnButtonPressed(VirtualButtonBehaviour behaviour) 
         {
-            Debug.Log("adventure button pressed");
-            //SceneManager.LoadScene(Constants.SceneAdventure);
         }
 
         public void OnButtonReleased(VirtualButtonBehaviour behaviour)
         {
-            Debug.Log("adventure button released");
-            SceneManager.LoadScene(Constants.SceneAdventure);
+            switch(SceneManager.GetActiveScene().name)
+            {
+                case Constants.SceneAdventure:
+                    SceneManager.LoadScene(Constants.SceneMain);
+                    break;
+                case Constants.SceneMain:
+                    SceneManager.LoadScene(Constants.SceneAdventure);
+                    break;
+            }
         }
     }
 }

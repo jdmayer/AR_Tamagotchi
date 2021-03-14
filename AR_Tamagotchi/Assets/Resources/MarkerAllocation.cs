@@ -6,9 +6,9 @@
 /// A4 - stones - ch - our Tamagotchi "Fino"
 /// A4 - chips
 /// A4 - tarmac
-/// A6 - marker-01
-/// A6 - marker-02
-/// A6 - marker-03
+/// A6 - marker-01 - it - banana
+/// A6 - marker-02 - it - hamburger
+/// A6 - marker-03 - it - ice cream
 /// A6 - marker-04
 /// A6 - marker-05
 /// A6 - marker-06
@@ -25,3 +25,4 @@
 /// Legend
 /// ch - character
 /// vb - virtual button
+/// it - item
