@@ -76,7 +76,6 @@ public class Tamagotchi : MonoBehaviour
         socialBubble.CrossFadeAlpha(0, 0.001f, true);
         thunderCloud.CrossFadeAlpha(0, 0.001f, true);
 
-        InvokeRepeating(nameof(ChangeFoodStatus), 0.0f, 1f);
 
         UpdateHungerBar();
         UpdateHappyBar();
@@ -89,29 +88,31 @@ public class Tamagotchi : MonoBehaviour
     private void Update()
     {
         //This deplishes happiness over time
-        happiness -= 0.3f * Time.deltaTime;
+        happiness -= 5f * Time.deltaTime;
         if(happiness < 0)
         {
             happiness = 0;
         }
         //This deplishes hunger over time
-        hunger -= 0.5f * Time.deltaTime;
+        hunger -= 5f * Time.deltaTime;
         if(hunger < 0)
         {
             hunger = 0;
         }
         //This deplishes energy over time
-        energy -= 0.1f * Time.deltaTime;
+        energy -= 5f * Time.deltaTime;
         if(energy < 0)
         {
             energy = 0;
         }
         //This deplishes social over time
-        social -= 0.2f * Time.deltaTime;
+        social -= 5f * Time.deltaTime;
         if(social < 0)
         {
             social = 0;
         }
+
+        InvokeRepeating(nameof(ChangeFoodStatus), 0.0f, 1f);
 
         UpdateHappyBar();
         UpdateHungerBar();

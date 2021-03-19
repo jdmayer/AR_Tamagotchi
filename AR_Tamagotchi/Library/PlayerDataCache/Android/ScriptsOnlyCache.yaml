@@ -1,7 +1,11 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - Assets.Scripts.SwitchScene
     - PanelOpener
+    - RecognizeFood
+    - SkinChanger
+    - Tamagotchi
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -16,6 +20,7 @@ ScriptsOnlyBuild:
     Vuforia.UnityExtensions.dll:
     - Vuforia.ImageTargetBehaviour
     - Vuforia.TurnOffBehaviour
+    - Vuforia.VirtualButtonBehaviour
     - Vuforia.VuforiaBehaviour
     - Vuforia.VuforiaConfiguration
     VuforiaScripts.dll:
@@ -41,6 +46,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
@@ -56,35 +65,43 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9724}
+      Script: {instanceID: 9726}
     - Class: 114
-      Script: {instanceID: 9876}
+      Script: {instanceID: 9880}
     - Class: 114
-      Script: {instanceID: 9910}
+      Script: {instanceID: 9914}
     - Class: 114
-      Script: {instanceID: 9918}
+      Script: {instanceID: 9922}
     - Class: 114
-      Script: {instanceID: 10188}
+      Script: {instanceID: 10192}
     - Class: 114
-      Script: {instanceID: 10292}
+      Script: {instanceID: 10296}
     - Class: 114
-      Script: {instanceID: 10398}
+      Script: {instanceID: 10402}
     - Class: 114
-      Script: {instanceID: 10420}
-    - Class: 114
-      Script: {instanceID: 10428}
+      Script: {instanceID: 10424}
     - Class: 114
       Script: {instanceID: 10430}
     - Class: 114
-      Script: {instanceID: 10834}
+      Script: {instanceID: 10432}
     - Class: 114
-      Script: {instanceID: 11018}
+      Script: {instanceID: 10434}
     - Class: 114
-      Script: {instanceID: 11282}
+      Script: {instanceID: 10726}
     - Class: 114
-      Script: {instanceID: 11702}
+      Script: {instanceID: 10840}
     - Class: 114
-      Script: {instanceID: 13274}
+      Script: {instanceID: 10948}
+    - Class: 114
+      Script: {instanceID: 10952}
+    - Class: 114
+      Script: {instanceID: 11030}
+    - Class: 114
+      Script: {instanceID: 11294}
+    - Class: 114
+      Script: {instanceID: 11714}
+    - Class: 114
+      Script: {instanceID: 11734}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -722,6 +739,12 @@ ScriptsOnlyBuild:
     className: SignalTrack
   - hash:
       serializedVersion: 2
+      Hash: 0d4eee582f31cf5776fc557d1c06cd4c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RecognizeFood
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -762,6 +785,18 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: VerticalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: b51c60af847a40748eb827e130bbea7a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Tamagotchi
+  - hash:
+      serializedVersion: 2
+      Hash: 11f8f79bd49364942695c6e282d5c8f5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Assets.Scripts
+    className: SwitchScene
   - hash:
       serializedVersion: 2
       Hash: 12e64d607873da15ad3f833620350d51
@@ -1124,6 +1159,12 @@ ScriptsOnlyBuild:
     className: Toggle
   - hash:
       serializedVersion: 2
+      Hash: 323fc000bb84b24dd65e0eb18941bac6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SkinChanger
+  - hash:
+      serializedVersion: 2
       Hash: 8220b46879dc5e37db1b940c938f5744
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -1134,6 +1175,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Slider
+  - hash:
+      serializedVersion: 2
+      Hash: 9cdd34dcc775db4f1bfc9a2c83e31898
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FeedFino
   - hash:
       serializedVersion: 2
       Hash: 0fd6822f6177297bd0eb4d83cc7a9030
