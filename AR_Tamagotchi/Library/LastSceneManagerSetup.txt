@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/AR_Main_Start.unity
+- path: Assets/Scenes/Micro Dragon Fino.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AR_Main_FinoMarker.unity
     guid: bdd691085a57b0b49b8a540d8dbdc695
+  - enabled: 1
+    path: Assets/Scenes/AR_Main_FinoMarker_Extended.unity
+    guid: 45b2a84712190b4408df879e4fe5394f
   m_configObjects: {}
