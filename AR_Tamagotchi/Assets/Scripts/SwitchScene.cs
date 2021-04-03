@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 using Vuforia;
 
 /// <summary>
 /// Author: Janine Mayer
 /// </summary>
-namespace Assets.Scripts
+namespace Monobehaviours
 {
     public class SwitchScene : MonoBehaviour, IVirtualButtonEventHandler
     {
