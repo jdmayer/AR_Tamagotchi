@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 /// <summary>
 /// Autorin: Helena Wilde
 /// </summary>
+
 public class StartPage : MonoBehaviour
 {
+    public GameObject StartButton;
+
+    public void Start()
+    {
+        StartButton.SetActive(false);
+    }
     public void ExitButton()
     {
         Application.Quit();
@@ -14,6 +22,6 @@ public class StartPage : MonoBehaviour
     }
     public void StartGame()
     {
-        SceneManager.LoadScene("AR_Main_FinoMarker");
+            SceneManager.LoadScene("AR_Main_FinoMarker");
     }
 }

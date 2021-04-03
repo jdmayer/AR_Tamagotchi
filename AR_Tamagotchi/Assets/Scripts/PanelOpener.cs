@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 /// <summary>
 /// Autorin: Helena Wilde
 /// </summary>
+
 public class PanelOpener : MonoBehaviour
 {
     public GameObject Panel;
