@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Monobehaviours;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
@@ -65,8 +66,12 @@ public class Tamagotchi : MonoBehaviour
     public Image FoodWishBanana;
     public Image FoodWishIceCream;
 
+    [SerializeField] private AnimatorOverrideController overrideController;
+    [SerializeField] private AnimatorOverrider overrider;
+
     private void Start()
     {
+        overrider.SetAnimations(overrideController);
         textAge.text = "Age: " + startAge.ToString("F2");
 
         //make pop ups not visibile upon game start
@@ -314,6 +319,10 @@ public class Tamagotchi : MonoBehaviour
                 }
 
                 UpdateHungerBar();
+            }
+            else
+            {
+                overrider.SetTrigger();
             }
         }
     }

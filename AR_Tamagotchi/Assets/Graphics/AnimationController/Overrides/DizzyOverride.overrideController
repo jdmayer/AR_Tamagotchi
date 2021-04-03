@@ -6,10 +6,8 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LoopOverride
+  m_Name: DizzyOverride
   m_Controller: {fileID: 9100000, guid: 87ca55ca056b4de48a4acee1de9e992e, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 60c1c2b77c54b4944b3a21a49829e5e1, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: c1277eb74f2c07c4ebc555ceebe45323, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 6c570110154e8b24f954bb2269d88674, type: 2}
-    m_OverrideClip: {fileID: 7400028, guid: eefd1a05969455744913d50c785b91e5, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 26d8b0598af38d44faa1234f1cff0712, type: 2}
