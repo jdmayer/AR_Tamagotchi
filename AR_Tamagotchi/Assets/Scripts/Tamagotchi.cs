@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,10 +9,14 @@ using UnityEngine.UI;
 /// </summary>
 
 public class Tamagotchi : MonoBehaviour
-{
+{ 
+    public GameObject FinoHappy;
+    public GameObject FinoDead;
+    public GameObject FinoSleeps;
     public GameObject bananeObject;
     public GameObject burgerObject;
     public GameObject icecreamObject;
+    public GameObject teddyBear;
     public GameObject foodThatFinoWantsEat;
     
     int banane = 1;
@@ -22,61 +27,61 @@ public class Tamagotchi : MonoBehaviour
     public Image currentEnergy;
     public Image currentHunger;
     public Image currentSocial;
-
-    //PopUps
-    public Image thunderCloud;
-    public Image happinessBubble;
-    public Image energyBubble;
-    public Image hungerBubble;
-    public Image socialBubble;
+    public Image HappyBar;
+    public Image HungerBar;
+    public Image EnergyBar;
+    public Image SocialBar;
     
     public Text HappyText;
     public Text EnergyText;
     public Text HungerText;
     public Text SocialText;
+    public Text textAge;
 
     private float happiness = 100;
     private float energy = 100;
     private float hunger = 100;
     private float social = 100;
     private float max = 100;
+    private float startAge;
+    private float timer;
+    private float sec = 100f * Time.deltaTime;
 
-    public Button Feed;
-    public Button Energy;
-    public Button Play;
-    public Button Social;
+    private bool gameOver = false;
+    private bool wrongFood = false;
 
-    public Text GameOverText;
-
-    public GameObject FinoHappy;
-    public GameObject FinoDead;
+    //PopUps
+    public Image GameOverImage;
+    public Image thunderCloud;
+    public Image happinessBubble;
+    public Image energyBubble;
+    public Image hungerBubble;
+    public Image socialBubble;
+    public Text FeedMe;
+    public Text LetMeSleep;
+    public Text HugMe;
+    public Text PlayWithMe;
+    public Image FoodWishBurger;
+    public Image FoodWishBanana;
+    public Image FoodWishIceCream;
 
     private void Start()
     {
-        //button Listener for Hunger
-        Button btn1 = Feed.GetComponent<Button>();
-        //btn1.onClick.AddListener(FeedTheFino);
+        textAge.text = "Age: " + startAge.ToString("F2");
 
-        //button Listener for Happiness
-        Button btn2 = Play.GetComponent<Button>();
-        btn2.onClick.AddListener(PlayWithFino);
-
-        //button Listener for Energy
-        Button btn3 = Energy.GetComponent<Button>();
-        btn3.onClick.AddListener(EnergyTheFino);
-
-        //button Listener for Social
-        Button btn4 = Social.GetComponent<Button>();
-        btn4.onClick.AddListener(SocialTheFino);
-
-        //make bubbles not visibile upon game start
+        //make pop ups not visibile upon game start
         happinessBubble.CrossFadeAlpha(0, 0.001f, true);
         energyBubble.CrossFadeAlpha(0, 0.001f, true);
         hungerBubble.CrossFadeAlpha(0, 0.001f, true);
         socialBubble.CrossFadeAlpha(0, 0.001f, true);
         thunderCloud.CrossFadeAlpha(0, 0.001f, true);
+        FeedMe.CrossFadeAlpha(0, 0.001f, true);
+        LetMeSleep.CrossFadeAlpha(0, 0.001f, true);
+        HugMe.CrossFadeAlpha(0, 0.001f, true);
+        PlayWithMe.CrossFadeAlpha(0, 0.001f, true);
 
-
+        InvokeRepeating(nameof(ChangeFoodStatus), 0.0f, 5f);
+  
         UpdateHungerBar();
         UpdateHappyBar();
         UpdateEnergyBar();
@@ -84,205 +89,307 @@ public class Tamagotchi : MonoBehaviour
 
         Update();
     }
-       
+
     private void Update()
     {
+        if(!gameOver)
+        {
+            startAge += 0.1f * Time.deltaTime;
+            textAge.text = "Age: " + startAge.ToString("F0");
+        }
+
         //This deplishes happiness over time
-        happiness -= 5f * Time.deltaTime;
+        happiness -= 1f * Time.deltaTime;
         if(happiness < 0)
         {
             happiness = 0;
         }
+        else if(happiness < 10)
+        {
+            toggleStatusBar(HappyBar);
+        }
+
         //This deplishes hunger over time
-        hunger -= 5f * Time.deltaTime;
+        hunger -= 1f * Time.deltaTime;
         if(hunger < 0)
         {
             hunger = 0;
         }
-        //This deplishes energy over time
-        energy -= 5f * Time.deltaTime;
-        if(energy < 0)
+        else if(hunger < 10)
         {
-            energy = 0;
+            toggleStatusBar(HungerBar);
         }
+
+        if(!FinoSleeps.gameObject.activeSelf)
+        {
+            //This deplishes energy over time
+            energy -= 1f * Time.deltaTime;
+            if(energy < 0)
+            {
+                energy = 0;
+            }
+            else if(energy < 10)
+            {
+                toggleStatusBar(EnergyBar);
+            }
+        }
+        else if(FinoSleeps.gameObject.activeSelf)
+        {
+            energy += 5f * Time.deltaTime;
+            if(energy > 100)
+            {
+                energy = 100;
+                AwakeTheFino();
+            }
+        }
+
         //This deplishes social over time
-        social -= 5f * Time.deltaTime;
+        social -= 1f * Time.deltaTime;
         if(social < 0)
         {
             social = 0;
         }
-
-        InvokeRepeating(nameof(ChangeFoodStatus), 0.0f, 1f);
+        else if(social < 10)
+        {
+            toggleStatusBar(SocialBar);
+        }
 
         UpdateHappyBar();
         UpdateHungerBar();
         UpdateEnergyBar();
         UpdateSocialBar();
-
         GameOver();
 
         needsCheck();
         goodParentCheck();
     }
-    //check needs of fino
+
+    public void toggleStatusBar(Image image)
+    {
+        if(image.gameObject.activeSelf)
+        {
+            image.gameObject.SetActive(false);
+        } 
+        else
+        {
+            image.gameObject.SetActive(true);
+        }
+    }
+
+    //Check needs of fino
     private void needsCheck()
     {
         if(happiness <= 50)
         {
-            happinessBubble.CrossFadeAlpha(1, 0.5f, true); 
+            happinessBubble.CrossFadeAlpha(1, 0.5f, true);
+            PlayWithMe.CrossFadeAlpha(1, 0.5f, true); 
         }
         else
         {
             happinessBubble.CrossFadeAlpha(0, 0.5f, true);
+            PlayWithMe.CrossFadeAlpha(0, 0.5f, true); 
         }
+        
         if(hunger < 50)
         {
             hungerBubble.CrossFadeAlpha(1, 0.5f, true);
+            FeedMe.CrossFadeAlpha(1, 0.5f, true); 
         }
         else
         {
             hungerBubble.CrossFadeAlpha(0, 0.5f, true);
+            FeedMe.CrossFadeAlpha(0, 0.5f, true); 
         }
+        
         if(energy <= 50)
         {
             energyBubble.CrossFadeAlpha(1, 0.5f, true);
+            LetMeSleep.CrossFadeAlpha(1, 0.5f, true); 
         }
         else
         {
             energyBubble.CrossFadeAlpha(0, 0.5f, true);
+            LetMeSleep.CrossFadeAlpha(0, 0.5f, true); 
         }
+        
         if(social <= 50)
         {
             socialBubble.CrossFadeAlpha(1, 0.5f, true);
+            HugMe.CrossFadeAlpha(1, 0.5f, true); 
         }
         else
         {
             socialBubble.CrossFadeAlpha(0, 0.5f, true);
+            HugMe.CrossFadeAlpha(0, 0.5f, true); 
         }
     }
 
-    //determines is fino happy or neglected
+    //Check needs
     private void goodParentCheck()
     {
-        if (happiness <= 20 || hunger <= 20 || energy <= 20 || social <= 20)
+        if (happiness <= 20 && hunger <= 20 && energy <= 20 && social <= 20)
         {
-            FinoHappy.gameObject.SetActive(true);
             thunderCloud.CrossFadeAlpha(1, 0.5f, true);
         }
         else
         {
-            FinoHappy.gameObject.SetActive(true);
             thunderCloud.CrossFadeAlpha(0, 0.5f, true);
         }
     }
+
+    //Change the food wish between burger, banana and icecream
     private void ChangeFoodStatus()
     {
-        int randomZahl = 0;
-        randomZahl = Random.Range(0, 2);
+        if (!gameOver)
+        {
+            FoodWishBanana.gameObject.SetActive(false);
+            FoodWishBurger.gameObject.SetActive(false);
+            FoodWishIceCream.gameObject.SetActive(false);
 
-        if (banane == randomZahl)
-        {
-            foodThatFinoWantsEat = bananeObject;
-        }
-        else if (burger == randomZahl)
-        {
-            foodThatFinoWantsEat = burgerObject;
-        }
-        else if (icecream == randomZahl)
-        {
-            foodThatFinoWantsEat = icecreamObject;
+            int randomZahl = 0;
+            randomZahl = Random.Range(1, 4);
+       
+            if (banane == randomZahl)
+            {
+                foodThatFinoWantsEat = bananeObject; 
+                FoodWishBanana.gameObject.SetActive(true);
+            }
+
+            else if (burger == randomZahl)
+            {
+                foodThatFinoWantsEat = burgerObject;
+                FoodWishBurger.gameObject.SetActive(true);
+            }
+
+            else if (icecream == randomZahl)
+            {
+                foodThatFinoWantsEat = icecreamObject;
+                FoodWishIceCream.gameObject.SetActive(true);
+            }
         }
     }
 
+    //Update bars
     private void UpdateHappyBar() 
     {
         float ratio = happiness/max;
         currentHappy.rectTransform.localScale = new Vector3(ratio, 1, 1);
         HappyText.text = (ratio*100).ToString("0") + '%';
     }
+
     private void UpdateEnergyBar() 
     {
         float ratio = energy/max;
         currentEnergy.rectTransform.localScale = new Vector3(ratio, 1, 1);
         EnergyText.text = (ratio*100).ToString("0") + '%';
     }
+
     private void UpdateHungerBar() 
     {
         float ratio = hunger/max;
         currentHunger.rectTransform.localScale = new Vector3(ratio, 1, 1);
-        HungerText.text = (ratio*100).ToString("0") + '%';
-       
+        HungerText.text = (ratio*100).ToString("0") + '%';    
     }
+
     private void UpdateSocialBar() 
     {
         float ratio = social/max;
         currentSocial.rectTransform.localScale = new Vector3(ratio, 1, 1);
         SocialText.text = (ratio*100).ToString("0") + '%';
-       
     }
+
+    //Meet needs
     public void FeedTheFino(GameObject food)
     {
-       if (food.name.Equals(foodThatFinoWantsEat?.name))
+        if (!gameOver)
         {
-           hunger += 30;
-           if (hunger > max)
-           {
-               hunger = max;
-           }
-           UpdateHungerBar();
+            if (food.name.Equals(foodThatFinoWantsEat?.name))
+            {
+                Debug.Log("Fino eats");
+                hunger += 30;
+            
+                if (hunger > max)
+                {
+                    hunger = max;
+                }
+
+                UpdateHungerBar();
+            }
         }
     }
+
     void PlayWithFino()
     {
-        Debug.Log("Play Button has been clicked");
-        happiness += 20;
-        if (happiness > max)
+        if (!gameOver)
         {
+            Debug.Log("Play Button has been clicked"); 
+            happiness += 20;
+        
+            if (happiness > max)
+            {
             happiness = max;
+            }
+
+            UpdateHappyBar();
         }
-        UpdateHappyBar();
     }
-    void EnergyTheFino()
+
+    public void SleepTheFino()
     {
-        Debug.Log("Energy Button has been clicked");
-        energy += (max-energy);
-        if (energy > max)
+        if (!gameOver)
         {
-            energy = max;
+            Debug.Log("Sleep Button has been clicked"); 
+ 
+            FinoHappy.gameObject.SetActive(false);
+            FinoSleeps.gameObject.SetActive(true);
         }
-        UpdateEnergyBar();
     }
-    void SocialTheFino()
+
+    public void AwakeTheFino()
     {
-        Debug.Log("Social Button has been clicked");
-        social += (max-social);
-        if (social > max)
+        if (!gameOver)
         {
-            social = max;
+            Debug.Log("Fino is awake again");
+
+            FinoHappy.gameObject.SetActive(true);
+            FinoSleeps.gameObject.SetActive(false);
         }
-        UpdateSocialBar();
     }
+
+    public void SocialTheFino()
+    {
+        if(!gameOver) 
+        {
+            Debug.Log("Teddy <3");
+            social += (max-social);
+
+            if (social > max)
+            {
+                social = max;
+            }
+
+            UpdateSocialBar();
+        }
+    }
+
+    //GameOver Function
     void GameOver()
     {
-        if (happiness == 0)
+        if (happiness == 0 && energy == 0 && hunger == 0 && social == 0)
         {
-            if (energy == 0)
-            {
-                if (hunger == 0)
-                {
-                    if (social == 0)
-                    {
-                           FinoHappy.gameObject.SetActive(false);
-                           FinoDead.gameObject.SetActive(true);
-                           //Feed.gameObject.SetActive(false);
-                           //Energy.gameObject.SetActive(false);
-                           //Social.gameObject.SetActive(false);
-                           //Play.gameObject.SetActive(false);
-                           GameOverText.gameObject.SetActive(true);
+            gameOver = true;
+            FinoHappy.gameObject.SetActive(false);
+            FinoDead.gameObject.SetActive(true);
+            happinessBubble.gameObject.SetActive(false);
+            hungerBubble.gameObject.SetActive(false);
+            socialBubble.gameObject.SetActive(false);
+            energyBubble.gameObject.SetActive(false);
+            thunderCloud.gameObject.SetActive(false);
+            GameOverImage.gameObject.SetActive(true);
+            FoodWishBanana.gameObject.SetActive(false);
+            FoodWishBurger.gameObject.SetActive(false);
+            FoodWishIceCream.gameObject.SetActive(false);
 
-                    }
-                }
-            }
         }
     }
 }

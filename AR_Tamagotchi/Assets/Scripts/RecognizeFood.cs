@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
+
 /// <summary>
 /// Autorin: Helena Wilde
 /// </summary>
@@ -19,6 +20,7 @@ public class RecognizeFood : MonoBehaviour, ITrackableEventHandler
             food.SetActive(true);
             tamaScript.FeedTheFino(food);
         }
+
         else
         {
             food.SetActive(false);

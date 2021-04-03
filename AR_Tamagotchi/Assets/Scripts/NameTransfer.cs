@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 /// <summary>
 /// Autorin: Helena Wilde
 /// </summary>
@@ -13,6 +14,6 @@ public class NameTransfer : MonoBehaviour
 
     private void Start()
     {
-        showName.text = InputName;
+        showName.text = "Name: " + InputName;
     }
 }

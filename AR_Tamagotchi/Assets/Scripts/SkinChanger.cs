@@ -5,6 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Autorin: Helena Wilde
 /// </summary>
+
 public class SkinChanger : MonoBehaviour
 {
     public Material materialRed;
@@ -54,5 +55,4 @@ public class SkinChanger : MonoBehaviour
         renderer.enabled = true;
         renderer.sharedMaterial = materialYellow;
     }
-
 }
