@@ -13,11 +13,10 @@ namespace Monobehaviours
         [SerializeField] private AnimatorOverrider overrider;
 
         public AudioSource audioSource;
-        public AudioClip flySound;
         public AudioClip jumpSound;
 
         private Vector3 originalPosition;
-        public float speed = 0.1f;
+        public float speed = 0.05f;
 
         public Text test;
 
@@ -86,8 +85,18 @@ namespace Monobehaviours
             Vector3 moveDirection = new Vector3(xDirection, 0.0f, zDirection);
 
             transform.position += moveDirection * speed;
-            //TODO check if it is farther away - then make flapping
-
+            
+            if (moveDirection != Vector3.zero)
+            {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.Play();
+                }
+            }
+            else
+            {
+                audioSource.Stop();
+            }
         }
 
         //do not let move too far from marker
