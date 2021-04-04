@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Unity\\AR_Tamagotchi\\AR_Tamagotchi\\Temp\\gradleOut\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-ne\\values-ne.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Janine Mayer\\.gradle\\caches\\transforms-2\\files-2.1\\5e7223d78ed0a09b804783f99b80599f\\res\\values-ne\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8",
+                        "startColumns": "0,0,0,0,0",
+                        "startOffsets": "190,245,303,398,494",
+                        "endColumns": "54,57,94,95,68",
+                        "endOffsets": "244,302,397,493,562"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,114,176,275,375",
+                        "endColumns": "58,61,98,99,72",
+                        "endOffsets": "109,171,270,370,443"
+                    }
+                }
+            ]
+        }
+    ]
+}

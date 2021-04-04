@@ -9,8 +9,8 @@ namespace Monobehaviours
 {
     public class Movement : MonoBehaviour
     {
-        [SerializeField] private AnimatorOverrideController[] overrideControllers;
-        [SerializeField] private AnimatorOverrider overrider;
+        //[SerializeField] private AnimatorOverrideController[] overrideControllers;
+        //[SerializeField] private AnimatorOverrider overrider;
 
         public AudioSource audioSource;
         public AudioClip jumpSound;
@@ -31,20 +31,10 @@ namespace Monobehaviours
 
         void Update()
         {
-            
-            //if (originalPosition == null)
-            //{
-            //    Debug.Log("is null");
-            //    originalPosition = transform.position; // new Vector3(Input.GetAxis(Constants.Horizontal), 0f, Input.GetAxis(Constants.Vertical));
-            //    Debug.Log(originalPosition);
-
-            //}
-
-            
-
-            if (Input.GetButtonUp(Constants.Jump))
+            var hasDoubleTapped = Input.touches.Length == 0 ? false : Input.GetTouch(0).tapCount == 2;
+            if (Input.GetButtonUp(Constants.Jump) || hasDoubleTapped)
             {
-                overrider.SetTrigger();
+                this.GetComponent<Animator>().SetTrigger(Constants.Loop);
                 audioSource.PlayOneShot(jumpSound, 1);
             }
 

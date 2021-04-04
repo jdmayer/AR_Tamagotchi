@@ -5,10 +5,11 @@ ScriptsOnlyBuild:
     - InputName
     - Monobehaviours.AnimatorOverrider
     - Monobehaviours.Character
-    - Monobehaviours.CharacterController
+    - Monobehaviours.Joystick
     - Monobehaviours.Movement
     - Monobehaviours.SwitchScene
     - NameTransfer
+    - OffScreenPointer
     - PanelOpener
     - RecognizeFood
     - RecognizeTeddy
@@ -22,7 +23,6 @@ ScriptsOnlyBuild:
     - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateMachineBehaviourEditor
     - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
@@ -38,11 +38,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.InputField
     - UnityEngine.UI.Text
     Vuforia.UnityExtensions.dll:
-    - Vuforia.AnchorBehaviour
-    - Vuforia.AnchorInputListenerBehaviour
-    - Vuforia.ContentPositioningBehaviour
     - Vuforia.ImageTargetBehaviour
-    - Vuforia.PlaneFinderBehaviour
     - Vuforia.TurnOffBehaviour
     - Vuforia.VirtualButtonBehaviour
     - Vuforia.VuforiaBehaviour
@@ -95,53 +91,53 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9802}
+      Script: {instanceID: 9726}
     - Class: 114
-      Script: {instanceID: 9956}
+      Script: {instanceID: 9880}
     - Class: 114
-      Script: {instanceID: 9990}
+      Script: {instanceID: 9914}
     - Class: 114
-      Script: {instanceID: 9998}
+      Script: {instanceID: 9922}
     - Class: 114
-      Script: {instanceID: 10270}
+      Script: {instanceID: 10196}
     - Class: 114
-      Script: {instanceID: 10374}
+      Script: {instanceID: 10300}
     - Class: 114
-      Script: {instanceID: 10482}
+      Script: {instanceID: 10408}
     - Class: 114
-      Script: {instanceID: 10504}
+      Script: {instanceID: 10430}
     - Class: 114
-      Script: {instanceID: 10510}
+      Script: {instanceID: 10436}
     - Class: 114
-      Script: {instanceID: 10512}
+      Script: {instanceID: 10438}
     - Class: 114
-      Script: {instanceID: 10514}
+      Script: {instanceID: 10440}
     - Class: 114
-      Script: {instanceID: 10806}
+      Script: {instanceID: 10556}
     - Class: 114
-      Script: {instanceID: 10920}
+      Script: {instanceID: 10676}
     - Class: 114
-      Script: {instanceID: 11028}
+      Script: {instanceID: 10736}
     - Class: 114
-      Script: {instanceID: 11032}
+      Script: {instanceID: 10850}
     - Class: 114
-      Script: {instanceID: 11110}
+      Script: {instanceID: 10960}
     - Class: 114
-      Script: {instanceID: 11258}
+      Script: {instanceID: 10964}
     - Class: 114
-      Script: {instanceID: 11376}
+      Script: {instanceID: 11044}
     - Class: 114
-      Script: {instanceID: 11796}
+      Script: {instanceID: 11192}
     - Class: 114
-      Script: {instanceID: 11816}
+      Script: {instanceID: 11310}
     - Class: 114
-      Script: {instanceID: 19286}
+      Script: {instanceID: 11372}
     - Class: 114
-      Script: {instanceID: 25466}
+      Script: {instanceID: 11534}
     - Class: 114
-      Script: {instanceID: 25468}
+      Script: {instanceID: 11736}
     - Class: 114
-      Script: {instanceID: 25470}
+      Script: {instanceID: 11756}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -181,9 +177,9 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 54
-      Script: {instanceID: 0}
     - Class: 65
+      Script: {instanceID: 0}
+    - Class: 68
       Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
@@ -204,47 +200,43 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9802}
+      Script: {instanceID: 9726}
     - Class: 114
-      Script: {instanceID: 9956}
+      Script: {instanceID: 9880}
     - Class: 114
-      Script: {instanceID: 10270}
+      Script: {instanceID: 9922}
     - Class: 114
-      Script: {instanceID: 10374}
+      Script: {instanceID: 10178}
     - Class: 114
-      Script: {instanceID: 10452}
+      Script: {instanceID: 10196}
     - Class: 114
-      Script: {instanceID: 10454}
+      Script: {instanceID: 10300}
     - Class: 114
-      Script: {instanceID: 10460}
+      Script: {instanceID: 10408}
     - Class: 114
-      Script: {instanceID: 10482}
+      Script: {instanceID: 10430}
     - Class: 114
-      Script: {instanceID: 10498}
+      Script: {instanceID: 10436}
     - Class: 114
-      Script: {instanceID: 10504}
+      Script: {instanceID: 10438}
     - Class: 114
-      Script: {instanceID: 10510}
+      Script: {instanceID: 10676}
     - Class: 114
-      Script: {instanceID: 10512}
+      Script: {instanceID: 10788}
     - Class: 114
-      Script: {instanceID: 10858}
+      Script: {instanceID: 10964}
     - Class: 114
-      Script: {instanceID: 11032}
+      Script: {instanceID: 11044}
     - Class: 114
-      Script: {instanceID: 11110}
+      Script: {instanceID: 11310}
     - Class: 114
-      Script: {instanceID: 11376}
+      Script: {instanceID: 11358}
     - Class: 114
-      Script: {instanceID: 11796}
+      Script: {instanceID: 11736}
     - Class: 114
-      Script: {instanceID: 15778}
+      Script: {instanceID: 14780}
     - Class: 114
-      Script: {instanceID: 19286}
-    - Class: 114
-      Script: {instanceID: 22160}
-    - Class: 114
-      Script: {instanceID: 35672}
+      Script: {instanceID: 21036}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -255,7 +247,7 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
-    - Class: 221
+    - Class: 213
       Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
@@ -283,29 +275,29 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9802}
+      Script: {instanceID: 9726}
     - Class: 114
-      Script: {instanceID: 9956}
+      Script: {instanceID: 9880}
     - Class: 114
-      Script: {instanceID: 9998}
+      Script: {instanceID: 9922}
     - Class: 114
-      Script: {instanceID: 10138}
+      Script: {instanceID: 10062}
     - Class: 114
-      Script: {instanceID: 10270}
+      Script: {instanceID: 10196}
     - Class: 114
-      Script: {instanceID: 10374}
+      Script: {instanceID: 10300}
     - Class: 114
-      Script: {instanceID: 10424}
+      Script: {instanceID: 10350}
     - Class: 114
-      Script: {instanceID: 10512}
+      Script: {instanceID: 10438}
     - Class: 114
-      Script: {instanceID: 10920}
+      Script: {instanceID: 10850}
     - Class: 114
-      Script: {instanceID: 11106}
+      Script: {instanceID: 11040}
     - Class: 114
-      Script: {instanceID: 11376}
+      Script: {instanceID: 11310}
     - Class: 114
-      Script: {instanceID: 11796}
+      Script: {instanceID: 11736}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -477,6 +469,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SubMeshUI
+  - hash:
+      serializedVersion: 2
+      Hash: 117c2497d7ad1eceef3e934b9966b515
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: OffScreenPointer
   - hash:
       serializedVersion: 2
       Hash: 5ab533713adae59372fb3e10a585c186
@@ -935,6 +933,12 @@ ScriptsOnlyBuild:
     className: WireframeTrackableEventHandler
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameOverPage
+  - hash:
+      serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -945,6 +949,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ScrollRect
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Monobehaviours
+    className: AnimatorOverrider
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -1011,6 +1021,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Monobehaviours
     className: SwitchScene
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Monobehaviours
+    className: CharacterController
   - hash:
       serializedVersion: 2
       Hash: 12e64d607873da15ad3f833620350d51
@@ -1103,6 +1119,18 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
+      Hash: 475dcb7939b2d695c44ad0fcddaa4c13
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Monobehaviours
+    className: Movement
+  - hash:
+      serializedVersion: 2
+      Hash: 3c8414b6ced04d10162e150d5bd78d67
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RecognizeTeddy
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -1113,6 +1141,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_StyleSheet
+  - hash:
+      serializedVersion: 2
+      Hash: f06ee9673c492e0db099ecbcf3389e21
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SleepFunction
   - hash:
       serializedVersion: 2
       Hash: 5372ed2ce39229b1ac910757999a8be2
@@ -1607,43 +1641,13 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 7f3f6b5b19b757baffc36ca4812959d0
     assemblyName: Assembly-CSharp.dll
     namespaceName: Monobehaviours
-    className: AnimatorOverrider
-  - hash:
-      serializedVersion: 2
-      Hash: 21054325566c7d2b198c261e825438c0
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: Monobehaviours
-    className: Movement
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: GameOverPage
-  - hash:
-      serializedVersion: 2
-      Hash: 3c8414b6ced04d10162e150d5bd78d67
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: RecognizeTeddy
-  - hash:
-      serializedVersion: 2
-      Hash: f06ee9673c492e0db099ecbcf3389e21
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SleepFunction
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: Monobehaviours
-    className: CharacterController
+    className: Joystick
   platform: 13
   scenePathNames:
   - Assets/Scenes/AR_Main_FinoMarker.unity
   - Assets/Scenes/AR_Main_FinoMarker_Extended.unity
   - Assets/Scenes/AR_Main_Start.unity
-  playerPath: C:/Unity/AR_Tamagotchi/AR_Tamagotchi/v1.2.apk
+  playerPath: C:/Unity/AR_Tamagotchi/AR_Tamagotchi/v2.0.apk
