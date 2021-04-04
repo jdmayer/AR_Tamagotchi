@@ -12,6 +12,10 @@ namespace Monobehaviours
         [SerializeField] private AnimatorOverrideController[] overrideControllers;
         [SerializeField] private AnimatorOverrider overrider;
 
+        public AudioSource audioSource;
+        public AudioClip flySound;
+        public AudioClip jumpSound;
+
         private Vector3 originalPosition;
         public float speed = 0.1f;
 
@@ -21,13 +25,14 @@ namespace Monobehaviours
         void Start()
         {
             //originalPosition = transform.position; // new Vector3(Input.GetAxis(Constants.Horizontal), 0f, Input.GetAxis(Constants.Vertical));
+            audioSource = GetComponent<AudioSource>();
         }
 
         private bool isMovingBack = false;
 
         void Update()
         {
-
+            
             //if (originalPosition == null)
             //{
             //    Debug.Log("is null");
@@ -36,10 +41,12 @@ namespace Monobehaviours
 
             //}
 
+            
+
             if (Input.GetButtonUp(Constants.Jump))
             {
                 overrider.SetTrigger();
-                //overrider.SetAnimations(overrideControllers[1]);
+                audioSource.PlayOneShot(jumpSound, 1);
             }
 
             //if (Input.GetKeyUp("t"))
@@ -60,11 +67,13 @@ namespace Monobehaviours
 
             //if (Input.GetKeyUp("c"))
             //{
-            //    test.text = transform.position.ToString();
-            //    isMovingBack = false;
+            //    transform.position += (transform.position - originalPosition).normalized * 1f * Time.deltaTime;
+            //    //test.text = originalPosition.ToString() + " " + transform.position.ToString();
+            //    //isMovingBack = false;
+
             //}
 
-            //// behave according to current state:
+            // behave according to current state:
             //if (isMovingBack)
             //{
             //    test.text = transform.position.ToString();
@@ -72,14 +81,12 @@ namespace Monobehaviours
             //    transform.position += (transform.position - originalPosition).normalized * 1f * Time.deltaTime;
             //}
 
-            //if (!isMovingBack)
-            //{
-            //    var xDirection = Input.GetAxis(Constants.Horizontal);
-            //    var zDirection = Input.GetAxis(Constants.Vertical);
-            //    Vector3 moveDirection = new Vector3(xDirection, 0.0f, zDirection);
+            var xDirection = Input.GetAxis(Constants.Horizontal);
+            var zDirection = Input.GetAxis(Constants.Vertical);
+            Vector3 moveDirection = new Vector3(xDirection, 0.0f, zDirection);
 
-            //    transform.position += moveDirection * speed;
-            //}
+            transform.position += moveDirection * speed;
+            //TODO check if it is farther away - then make flapping
 
         }
 

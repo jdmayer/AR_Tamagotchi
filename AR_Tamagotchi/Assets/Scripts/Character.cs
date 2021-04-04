@@ -41,19 +41,19 @@ namespace Monobehaviours
         private void SetLevel()
         {
             //TODO check if it can become level 0!
-            Debug.Log("lvl: " + Level);
+            //Debug.Log("lvl: " + Level);
 
             Level = Mathf.RoundToInt(100 * Mathf.Sqrt(ExperiencePoints));
-            Debug.Log("XP: " + ExperiencePoints);
-            Debug.Log("lvl: " + Level);
+            //Debug.Log("XP: " + ExperiencePoints);
+            //Debug.Log("lvl: " + Level);
         }
 
         private void SetMaxHealth()
         {
-            Debug.Log("mx hlt: " + MaxHealth);
+            //Debug.Log("mx hlt: " + MaxHealth);
 
             MaxHealth = 10 * Level + 100;
-            Debug.Log("mx hlt: " + MaxHealth);
+            //Debug.Log("mx hlt: " + MaxHealth);
 
         }
 

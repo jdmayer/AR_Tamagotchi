@@ -1,11 +1,30 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - Assets.Scripts.SwitchScene
+    - GameOverPage
+    - InputName
+    - Monobehaviours.AnimatorOverrider
+    - Monobehaviours.Character
+    - Monobehaviours.CharacterController
+    - Monobehaviours.Movement
+    - Monobehaviours.SwitchScene
+    - NameTransfer
     - PanelOpener
     - RecognizeFood
+    - RecognizeTeddy
     - SkinChanger
+    - SleepFunction
+    - StartPage
     - Tamagotchi
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateMachineBehaviourEditor
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -16,9 +35,14 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.InputField
     - UnityEngine.UI.Text
     Vuforia.UnityExtensions.dll:
+    - Vuforia.AnchorBehaviour
+    - Vuforia.AnchorInputListenerBehaviour
+    - Vuforia.ContentPositioningBehaviour
     - Vuforia.ImageTargetBehaviour
+    - Vuforia.PlaneFinderBehaviour
     - Vuforia.TurnOffBehaviour
     - Vuforia.VirtualButtonBehaviour
     - Vuforia.VuforiaBehaviour
@@ -48,11 +72,17 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 54
       Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
       Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
@@ -65,48 +95,220 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9726}
+      Script: {instanceID: 9802}
     - Class: 114
-      Script: {instanceID: 9880}
+      Script: {instanceID: 9956}
     - Class: 114
-      Script: {instanceID: 9914}
+      Script: {instanceID: 9990}
     - Class: 114
-      Script: {instanceID: 9922}
+      Script: {instanceID: 9998}
     - Class: 114
-      Script: {instanceID: 10192}
+      Script: {instanceID: 10270}
     - Class: 114
-      Script: {instanceID: 10296}
+      Script: {instanceID: 10374}
     - Class: 114
-      Script: {instanceID: 10402}
+      Script: {instanceID: 10482}
     - Class: 114
-      Script: {instanceID: 10424}
+      Script: {instanceID: 10504}
     - Class: 114
-      Script: {instanceID: 10430}
+      Script: {instanceID: 10510}
     - Class: 114
-      Script: {instanceID: 10432}
+      Script: {instanceID: 10512}
     - Class: 114
-      Script: {instanceID: 10434}
+      Script: {instanceID: 10514}
     - Class: 114
-      Script: {instanceID: 10726}
+      Script: {instanceID: 10806}
     - Class: 114
-      Script: {instanceID: 10840}
+      Script: {instanceID: 10920}
     - Class: 114
-      Script: {instanceID: 10948}
+      Script: {instanceID: 11028}
     - Class: 114
-      Script: {instanceID: 10952}
+      Script: {instanceID: 11032}
     - Class: 114
-      Script: {instanceID: 11030}
+      Script: {instanceID: 11110}
     - Class: 114
-      Script: {instanceID: 11294}
+      Script: {instanceID: 11258}
     - Class: 114
-      Script: {instanceID: 11714}
+      Script: {instanceID: 11376}
     - Class: 114
-      Script: {instanceID: 11734}
+      Script: {instanceID: 11796}
+    - Class: 114
+      Script: {instanceID: 11816}
+    - Class: 114
+      Script: {instanceID: 19286}
+    - Class: 114
+      Script: {instanceID: 25466}
+    - Class: 114
+      Script: {instanceID: 25468}
+    - Class: 114
+      Script: {instanceID: 25470}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
     - Class: 137
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 221
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/AR_Main_FinoMarker_Extended.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 90
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 9802}
+    - Class: 114
+      Script: {instanceID: 9956}
+    - Class: 114
+      Script: {instanceID: 10270}
+    - Class: 114
+      Script: {instanceID: 10374}
+    - Class: 114
+      Script: {instanceID: 10452}
+    - Class: 114
+      Script: {instanceID: 10454}
+    - Class: 114
+      Script: {instanceID: 10460}
+    - Class: 114
+      Script: {instanceID: 10482}
+    - Class: 114
+      Script: {instanceID: 10498}
+    - Class: 114
+      Script: {instanceID: 10504}
+    - Class: 114
+      Script: {instanceID: 10510}
+    - Class: 114
+      Script: {instanceID: 10512}
+    - Class: 114
+      Script: {instanceID: 10858}
+    - Class: 114
+      Script: {instanceID: 11032}
+    - Class: 114
+      Script: {instanceID: 11110}
+    - Class: 114
+      Script: {instanceID: 11376}
+    - Class: 114
+      Script: {instanceID: 11796}
+    - Class: 114
+      Script: {instanceID: 15778}
+    - Class: 114
+      Script: {instanceID: 19286}
+    - Class: 114
+      Script: {instanceID: 22160}
+    - Class: 114
+      Script: {instanceID: 35672}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 137
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 221
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/AR_Main_Start.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 9802}
+    - Class: 114
+      Script: {instanceID: 9956}
+    - Class: 114
+      Script: {instanceID: 9998}
+    - Class: 114
+      Script: {instanceID: 10138}
+    - Class: 114
+      Script: {instanceID: 10270}
+    - Class: 114
+      Script: {instanceID: 10374}
+    - Class: 114
+      Script: {instanceID: 10424}
+    - Class: 114
+      Script: {instanceID: 10512}
+    - Class: 114
+      Script: {instanceID: 10920}
+    - Class: 114
+      Script: {instanceID: 11106}
+    - Class: 114
+      Script: {instanceID: 11376}
+    - Class: 114
+      Script: {instanceID: 11796}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -247,6 +449,12 @@ ScriptsOnlyBuild:
     className: PhysicsRaycaster
   - hash:
       serializedVersion: 2
+      Hash: bb5a88ca96021e6a60335909f32f50e4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: InputName
+  - hash:
+      serializedVersion: 2
       Hash: bd3cf68c8964d3c66d1c43f4f98508c9
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -323,6 +531,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Selectable
+  - hash:
+      serializedVersion: 2
+      Hash: 540178f1573dd64a1d17c34bb618edd8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StartPage
   - hash:
       serializedVersion: 2
       Hash: 0077fc8e4fbae67f80e80ebd534de5a0
@@ -757,10 +971,10 @@ ScriptsOnlyBuild:
     className: RemoteTestResultSender
   - hash:
       serializedVersion: 2
-      Hash: 07cabade2c65f8321e18f3f04e964de1
+      Hash: e9bea563200bd6dffabd8984c8cc48ed
     assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Fino
+    namespaceName: Monobehaviours
+    className: Character
   - hash:
       serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
@@ -787,7 +1001,7 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: b51c60af847a40748eb827e130bbea7a
+      Hash: a291e0d966e982bc17d6fa22e153a47f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Tamagotchi
@@ -795,7 +1009,7 @@ ScriptsOnlyBuild:
       serializedVersion: 2
       Hash: 11f8f79bd49364942695c6e282d5c8f5
     assemblyName: Assembly-CSharp.dll
-    namespaceName: Assets.Scripts
+    namespaceName: Monobehaviours
     className: SwitchScene
   - hash:
       serializedVersion: 2
@@ -851,6 +1065,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: TimelineAsset
+  - hash:
+      serializedVersion: 2
+      Hash: a16791e515d7964ca17ce88869c72b85
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: NameTransfer
   - hash:
       serializedVersion: 2
       Hash: dff7a11839abb9fb7222280cf3c0a95a
@@ -1177,12 +1397,6 @@ ScriptsOnlyBuild:
     className: Slider
   - hash:
       serializedVersion: 2
-      Hash: 9cdd34dcc775db4f1bfc9a2c83e31898
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: FeedFino
-  - hash:
-      serializedVersion: 2
       Hash: 0fd6822f6177297bd0eb4d83cc7a9030
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -1391,7 +1605,45 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Monobehaviours
+    className: AnimatorOverrider
+  - hash:
+      serializedVersion: 2
+      Hash: 21054325566c7d2b198c261e825438c0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Monobehaviours
+    className: Movement
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameOverPage
+  - hash:
+      serializedVersion: 2
+      Hash: 3c8414b6ced04d10162e150d5bd78d67
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RecognizeTeddy
+  - hash:
+      serializedVersion: 2
+      Hash: f06ee9673c492e0db099ecbcf3389e21
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SleepFunction
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Monobehaviours
+    className: CharacterController
   platform: 13
   scenePathNames:
   - Assets/Scenes/AR_Main_FinoMarker.unity
-  playerPath: C:/Users/helen/Desktop/test.apk
+  - Assets/Scenes/AR_Main_FinoMarker_Extended.unity
+  - Assets/Scenes/AR_Main_Start.unity
+  playerPath: C:/Unity/AR_Tamagotchi/AR_Tamagotchi/v1.2.apk
