@@ -5,7 +5,7 @@
 /// </summary>
 namespace Monobehaviours
 {
-    public class ExclamationMark : MonoBehaviour
+    public class Mark : MonoBehaviour
     {
         void Start()
         {
