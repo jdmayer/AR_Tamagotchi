@@ -26,6 +26,9 @@ namespace Utils
         public const string Die = "Die";
         public const string GetHit = "GetHit";
         public const string Dizzy = "Dizzy";
+
+        //Prefabs
+        public const string ExclamationMark = "ExclamationMark";
     }
 
 }
