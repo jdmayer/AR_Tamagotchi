@@ -1,4 +1,5 @@
 ﻿using System;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -10,30 +11,70 @@ namespace Character
 {
     public class Character : CharacterBasic
     {
-        private int experiencePoints;
+        private int _experiencePoints;
         public int ExperiencePoints {
             get
             {
-                return experiencePoints;
+                return _experiencePoints;
             }
             set
             {
-                experiencePoints = value;
+                _experiencePoints = value;
                 SetLevel();
-                SetMaxHealth(); //check if they are set with new xp points
+                SetMaxHealth();
+                ExperienceBar.SetMaxValue(100, 0);
             }
         }
 
-        public int Level { get; private set; }
-        public int Energy { get; set; }
-        public int Health { get; set; }
-        public int MaxHealth { get; private set; }
+        public int Level;
 
+        private int _energy;
+        public int Energy
+        {
+            get
+            {
+                return _energy;
+            }
+            set
+            {
+                _energy = value;
+                EnergyBar.SetValue(_energy);
+            }
+        }
+
+        private int _health;
+        public int Health
+        {
+            get
+            {
+                return _health;
+            }
+            set
+            {
+                _health = value;
+                HealthBar.SetValue(_health);
+            }
+        }
+        protected int _maxHealth { get; private set; }
+
+        public StatusBar HealthBar;
+        public StatusBar EnergyBar;
+        public StatusBar ExperienceBar;
+
+        private float NextHealing = 0.0f;
+        public float HealingPeriod = 10.0f;
+
+        public Text statsText;
 
         public Character()
         {
+            ExperienceBar.SetMaxValue(100, 100);
+            HealthBar.SetMaxValue(100, 100);
+            EnergyBar.SetMaxValue(100, 100);
+
+            //TODO - check what else is needed!
             ExperiencePoints = 0;
-            Health = 100;
+            _health = 100;
         }
 
         /// <summary>
@@ -42,19 +83,19 @@ namespace Character
         /// </summary>
         private void SetLevel()
         {
-            //TODO check if it can become level 0!
-            Level = Mathf.RoundToInt(100 * Mathf.Sqrt(ExperiencePoints));
+            var newLevel = Mathf.RoundToInt(100 * Mathf.Sqrt(ExperiencePoints));
+            Level = Math.Max(newLevel, 1);
         }
 
+        //TODO check if they are reset with new XP
         private void SetMaxHealth()
         {
-            MaxHealth = 10 * Level + 100;
+            var prevMaxHealth = _maxHealth;
+            _maxHealth = 10 * Level + 100;
+
+            _health += (_maxHealth - prevMaxHealth);
+            HealthBar.SetMaxValue(_maxHealth, _health);
         }
-
-        private float NextHealing = 0.0f;
-        public float HealingPeriod = 10.0f;
-
-        public Text statsText;
 
         private void Start()
         {
@@ -66,9 +107,11 @@ namespace Character
             if (Time.time > NextHealing)
             {
                 NextHealing += HealingPeriod;
-                Health = Health < MaxHealth ? 2 : 0;
+                _health = _health < _maxHealth ? 2 : 0;
 
+                //TODO rm after testing
                 Energy -= 10;
+                _health -= 10;
             }
 
             //statsText.text = $"Health: {Health}|{MaxHealth} - XP {ExperiencePoints}";
@@ -89,7 +132,7 @@ namespace Character
         public override void SetPlayerPrefs()
         {
             PlayerPrefs.SetFloat(PlayerPref.Energy, Energy);
-            PlayerPrefs.SetFloat(PlayerPref.ExperiencePoints, experiencePoints);
+            PlayerPrefs.SetFloat(PlayerPref.ExperiencePoints, _experiencePoints);
         }
 
         public override void ResetPlayerPrefs()

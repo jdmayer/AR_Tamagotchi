@@ -15,10 +15,10 @@ namespace UI
             slider.value = value;
         }
 
-        public void SetMaxValue(int maxValue)
+        public void SetMaxValue(int maxValue, int value)
         {
             slider.maxValue = maxValue;
-            slider.value = maxValue;
+            slider.value = value;
         }
     }
 }

@@ -9,13 +9,9 @@ namespace Monobehaviours
 {
     public class Movement : MonoBehaviour
     {
-        //[SerializeField] private AnimatorOverrideController[] overrideControllers;
-        //[SerializeField] private AnimatorOverrider overrider;
-
-        public AudioSource audioSource;
+        private AudioSource _audioSource;
         public AudioClip jumpSound;
 
-        private Vector3 originalPosition;
         public float speed = 0.05f;
 
         public Text test;
@@ -23,8 +19,7 @@ namespace Monobehaviours
 
         void Start()
         {
-            //originalPosition = transform.position; // new Vector3(Input.GetAxis(Constants.Horizontal), 0f, Input.GetAxis(Constants.Vertical));
-            audioSource = GetComponent<AudioSource>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private bool isMovingBack = false;
@@ -35,7 +30,7 @@ namespace Monobehaviours
             if (Input.GetButtonUp(Constants.Jump) || hasDoubleTapped)
             {
                 this.GetComponent<Animator>().SetTrigger(Constants.Loop);
-                audioSource.PlayOneShot(jumpSound, 1);
+                _audioSource.PlayOneShot(jumpSound, 1);
             }
 
             //if (Input.GetKeyUp("t"))
@@ -78,14 +73,14 @@ namespace Monobehaviours
             
             if (moveDirection != Vector3.zero)
             {
-                if (!audioSource.isPlaying)
+                if (!_audioSource.isPlaying)
                 {
-                    audioSource.Play();
+                    _audioSource.Play();
                 }
             }
             else
             {
-                audioSource.Stop();
+                _audioSource.Stop();
             }
         }
 
