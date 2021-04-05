@@ -12,6 +12,7 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
     public GameObject Player;
     public float MinDistance = 0.3f;
     public float RechargeTime = 60f;
+    public float PossibilityOfGem = 30;
     public Text TimerTextPrefab;
     public Canvas Canvas;
 
@@ -22,7 +23,10 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
     private GameObject _exclamationMark;
     private GameObject _questionMark;
     private GameObject _vegetation;
+    private GameObject _adventureObject;
     private AudioSource _audioSource;
+
+    private bool _isActive;
 
     private IList<TrackableBehaviour.Status> _trackableStatus = 
         new List<TrackableBehaviour.Status>() 
@@ -42,6 +46,8 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
         _questionMark = transform.Find(Prefabs.QuestionMark).gameObject;
         _questionMark.SetActive(false);
         _vegetation = transform.Find(Prefabs.Vegetation).gameObject;
+
+        _isActive = false;
     }
 
     void Update()
@@ -59,20 +65,19 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
 
             return;
         }
-        else
+        else if (!_isActive)
         {
             SetAttentionMark();
         }
 
-
         // TODO Remove for PROD
-        if (Input.GetKeyUp("t"))
+        if (Input.GetKeyUp("t") && !_isActive)
         {
             Debug.Log("Discover adventure");
             DiscoverAdventure();
         }
 
-        if (Input.GetKeyUp("r"))
+        if (Input.GetKeyUp("r") && _isActive)
         {
             Debug.Log("Reset adventure");
             ResetAdventure();
@@ -87,7 +92,6 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
             if (!_questionMark.activeSelf)
             {
                 _audioSource.Play();
-                Debug.Log("SURPRISE!!");
                 _questionMark.SetActive(true);
             }
         }
@@ -100,37 +104,60 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
 
     public void DiscoverAdventure()
     {
+        if (_isActive)
+        {
+            return;
+        }
+
+        _isActive = true;
+
         _questionMark.SetActive(false);
         _vegetation.SetActive(false);
 
-        //set random adventure with prefabs - either monster or power up
+        if (Random.Range(0, 100) <= PossibilityOfGem)
+        {
+            var gemPrefab = GetRandomPrefab(Prefabs.GemPrefabs, Prefabs.GemDirectory);
+            _adventureObject = Instantiate(gemPrefab, _vegetation.transform.position, _vegetation.transform.rotation, gameObject.transform);
+            _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+        else
+        {
+            var dragonPrefab = Resources.Load(Prefabs.DragonDirectory + Prefabs.DragonNeutral) as GameObject;
+            _adventureObject = Instantiate(dragonPrefab, _vegetation.transform.position, _vegetation.transform.rotation, gameObject.transform);
+            _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+    }
+
+    private GameObject GetRandomPrefab(string[] objects, string directory)
+    {
+        var randomIndex = Random.Range(0, objects.Length);
+        var randomPrefabName = $"{directory}{objects[randomIndex]}";
+        return Resources.Load(randomPrefabName) as GameObject;
     }
 
     public void ResetAdventure()
     {
-        var vegetationPrefabs = Prefabs.VegetationPrefabs;
-        var randomIndex = Random.Range(0, vegetationPrefabs.Length);
-        var randomVegetation = $"{Prefabs.VegetationDirectory}{vegetationPrefabs[randomIndex]}";
-        
-        var vegetation = Resources.Load(randomVegetation) as GameObject;
+        Destroy(_adventureObject);
 
-        if (vegetation == null)
+        var randomVegetation = GetRandomPrefab(Prefabs.VegetationPrefabs, Prefabs.VegetationDirectory);
+        if (randomVegetation == null)
         {
             _vegetation.SetActive(true);
         }
         else
         {
-            GameObject newVegetation = Instantiate(vegetation, _vegetation.transform.position, Random.rotation, gameObject.transform);
+            GameObject newVegetation = Instantiate(randomVegetation, 
+                _vegetation.transform.position, _vegetation.transform.rotation, gameObject.transform);
             newVegetation.transform.localScale = _vegetation.transform.localScale;
 
             Destroy(_vegetation);
             _vegetation = newVegetation;
         }
 
+        _isActive = false;
         StartTimer();
     }
 
-    //make text move then!
     private void StartTimer()
     {
         if (_countDown == null)
@@ -141,8 +168,8 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
         }
 
         _countDown.enabled = true;
-        _hasTimeOut = true;
         _timeLeft = RechargeTime;
+        _hasTimeOut = true;
     }
 
     private void StopTimer()
@@ -152,11 +179,12 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
     }
 
     //move to other class - to detect help or item
+    //as long as nothing is shown - DO NOT PLAY SOUND
     public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus)
     {
         if (_trackableStatus.Contains(newStatus))
         {
-            Debug.Log("detected something!");
+            _audioSource.mute = false;
         }
     }
 }

@@ -21,8 +21,7 @@ namespace Utils
             {
                 Bush_1_1,
                 Bush_1_2,
-                Grass_2_1,
-                FallenTree_1_1
+                Grass_2_1
             };
 
         public const string DragonNeutral = "micro_dragon_fino";
@@ -31,11 +30,17 @@ namespace Utils
         public const string DragonDead = "micro_dragon_fino_dead";
         public const string DragonDirectory = "Models/Micro-Dragon-Fino/Prefabs/";
 
-        public static readonly string[] DragonPrefabs =
+        public const string Gem1 = "PurpCrystal00";
+        public const string Gem2 = "PurpCrystal05";
+        public const string Gem3 = "PurpCrystal07";
+        public const string GemDirectory = "Models/Toon Crystals pack/Meshes/";
+
+        public static readonly string[] GemPrefabs =
             new string[]
             {
-                DragonNeutral,
-                DragonHappy
+                Gem1,
+                Gem2,
+                Gem3
             };
     }
 }
