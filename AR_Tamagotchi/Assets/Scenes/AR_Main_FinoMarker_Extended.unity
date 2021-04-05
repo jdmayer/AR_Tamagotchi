@@ -1370,6 +1370,8 @@ MonoBehaviour:
   Player: {fileID: 1076264213298750}
   MinDistance: 0.3
   RechargeTime: 60
+  TimerTextPrefab: {fileID: 2969095364372217951, guid: 174fa508dff55214db3178d60beea4de,
+    type: 3}
 --- !u!1 &1278349179
 GameObject:
   m_ObjectHideFlags: 0

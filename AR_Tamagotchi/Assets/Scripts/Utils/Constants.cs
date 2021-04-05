@@ -35,19 +35,18 @@ namespace Utils
 
         public const string Bush_1_1 = "Bush_1_1";
         public const string Bush_1_2 = "Bush_1_2";
-        public const string Grass_1_1 = "Grass_1_1";
-        public const string Grass_1_2 = "Grass_1_2";
         public const string Grass_2_1 = "Grass_2_1";
-        public const string VegetationDirectoy = "Models/FreeVegetation-LowPolyNature/FreeVegetation/Prefabs/";
+        public const string Plant_1_1 = "Plant_1_1";
+        public const string FallenTree_1_1 = "FallenTree_1_1";
+        public const string VegetationDirectory = "Models/FreeVegetation-LowPolyNature/FreeVegetation/Prefabs/";
 
         public static readonly string[] VegetationPrefabs =
             new string[]
             {
                 Bush_1_1,
                 Bush_1_2,
-                Grass_1_1,
-                Grass_1_2,
-                Grass_2_1
+                Grass_2_1,
+                FallenTree_1_1
             };
     }
 }

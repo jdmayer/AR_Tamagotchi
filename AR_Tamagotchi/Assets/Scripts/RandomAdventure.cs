@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils;
 using Vuforia;
 
@@ -11,10 +12,12 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
     public GameObject Player;
     public float MinDistance = 0.3f;
     public float RechargeTime = 60f;
+    public Text TimerTextPrefab;
+    public Canvas Canvas;
 
-    private float _nextRound = 0f;
+    private float _timeLeft = 0f;
     private bool _hasTimeOut = false;
-
+    private Text _countDown;
 
     private GameObject _exclamationMark;
     private GameObject _questionMark;
@@ -43,20 +46,27 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
 
     void Update()
     {
+        if (_hasTimeOut)
+        {
+            _timeLeft -= Time.deltaTime;
+            _countDown.text = $"{_timeLeft:00} seconds";
+            _countDown.transform.position = Camera.main.WorldToScreenPoint(_vegetation.transform.position);
 
-        if (_hasTimeOut && Time.time > _nextRound)
-        {            
-            _hasTimeOut = false;
+            if (_timeLeft < 0)
+            {
+                StopTimer();
+            }
+
+            return;
         }
-
-        if (!_hasTimeOut)
+        else
         {
             SetAttentionMark();
         }
 
 
-        // only for testing
-        if (Input.GetKeyUp("d"))
+        // TODO Remove for PROD
+        if (Input.GetKeyUp("t"))
         {
             Debug.Log("Discover adventure");
             DiscoverAdventure();
@@ -74,6 +84,7 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
         float actualDistance = Vector3.Distance(Player.transform.position, transform.position);
         if (actualDistance <= MinDistance)
         {
+            //TODO ADD AUDIO
             Debug.Log("SURPRISE!!");
             _questionMark.SetActive(true);
         }
@@ -95,7 +106,7 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
     {
         var vegetationPrefabs = Constants.VegetationPrefabs;
         var randomIndex = Random.Range(0, vegetationPrefabs.Length);
-        var randomVegetation = $"{Constants.VegetationDirectoy}{vegetationPrefabs[randomIndex]}";
+        var randomVegetation = $"{Constants.VegetationDirectory}{vegetationPrefabs[randomIndex]}";
         
         var vegetation = Resources.Load(randomVegetation) as GameObject;
 
@@ -112,15 +123,31 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
             _vegetation = newVegetation;
         }
 
-        StartTimeOut();
+        StartTimer();
     }
 
-    private void StartTimeOut()
+    //make text move then!
+    private void StartTimer()
     {
+        if (_countDown == null)
+        {
+            var countdownPos = Camera.main.WorldToScreenPoint(_vegetation.transform.position);
+            _countDown = Instantiate(TimerTextPrefab, Canvas.transform);
+            _countDown.transform.position = countdownPos;
+        }
+
+        _countDown.enabled = true;
         _hasTimeOut = true;
-        _nextRound = Time.time + RechargeTime;
+        _timeLeft = RechargeTime;
     }
 
+    private void StopTimer()
+    {
+        _countDown.enabled = false;
+        _hasTimeOut = false;
+    }
+
+    //move to other class - to detect help or item
     public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus)
     {
         if (_trackableStatus.Contains(newStatus))
