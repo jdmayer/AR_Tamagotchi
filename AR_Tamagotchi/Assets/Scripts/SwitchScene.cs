@@ -11,6 +11,7 @@ namespace Monobehaviours
     public class SwitchScene : MonoBehaviour, IVirtualButtonEventHandler
     {
         public GameObject adventureButton;
+        public ICharacter Character;
 
         // TODO
         // Set new Fino attributes
