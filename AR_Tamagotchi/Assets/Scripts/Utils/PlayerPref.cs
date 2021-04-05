@@ -13,6 +13,5 @@ namespace Utils
         public const string Social = "Social";
 
         public const string ExperiencePoints = "ExperiencePoints";
-        public const string MaxHealth = "MaxHealth";
     }
 }

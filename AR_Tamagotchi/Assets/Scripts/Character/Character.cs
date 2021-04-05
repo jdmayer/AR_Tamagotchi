@@ -8,7 +8,7 @@ using Utils;
 /// </summary>
 namespace Character
 {
-    public class Character : MonoBehaviour
+    public class Character : CharacterBasic
     {
         private int experiencePoints;
         public int ExperiencePoints {
@@ -29,7 +29,6 @@ namespace Character
         public int Health { get; set; }
         public int MaxHealth { get; private set; }
 
-        
 
         public Character()
         {
@@ -59,8 +58,7 @@ namespace Character
 
         private void Start()
         {
-            Energy = Convert.ToInt32(PlayerPrefs.GetFloat(PlayerPref.Energy));
-            Debug.Log(Energy);
+            UpdateValuesWithPlayerPrefs();
         }
 
         void Update()
@@ -80,6 +78,24 @@ namespace Character
             //    statsText.text += "... DEAD ...";
             //    Debug.Log($"You killed FINO.");
             //}
+        }
+
+        public override void UpdateValuesWithPlayerPrefs()
+        {
+            ExperiencePoints = PlayerPrefs.GetInt(PlayerPref.ExperiencePoints, 0);
+            Energy = Convert.ToInt32(PlayerPrefs.GetFloat(PlayerPref.Energy, 100f));
+        }
+
+        public override void SetPlayerPrefs()
+        {
+            PlayerPrefs.SetFloat(PlayerPref.Energy, Energy);
+            PlayerPrefs.SetFloat(PlayerPref.ExperiencePoints, experiencePoints);
+        }
+
+        public override void ResetPlayerPrefs()
+        {
+            PlayerPrefs.SetFloat(PlayerPref.Energy, 100);
+            PlayerPrefs.SetFloat(PlayerPref.ExperiencePoints, 0);
         }
     }
 }

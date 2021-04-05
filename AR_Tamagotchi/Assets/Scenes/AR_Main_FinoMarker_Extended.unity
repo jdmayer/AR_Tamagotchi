@@ -126,34 +126,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2856166030256562538}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &69258151
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'marker-06Material
-
-    14118'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 99d6d15d2e014676956778b484a2f3e2, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &173658351
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,34 +396,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 331429166}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &561435067
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'stonesMaterial
-
-    14246'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: bb714ac6227343b78f4867fa74b426b9, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!43 &634662702
 Mesh:
   m_ObjectHideFlags: 0
@@ -865,10 +809,10 @@ GameObject:
   - component: {fileID: 876371070}
   - component: {fileID: 876371069}
   - component: {fileID: 876371068}
-  - component: {fileID: 876371071}
   - component: {fileID: 876371067}
   - component: {fileID: 876371066}
   - component: {fileID: 876371065}
+  - component: {fileID: 876371071}
   m_Layer: 0
   m_Name: Btn-MainScene
   m_TagString: Untagged
@@ -901,7 +845,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 69258151}
+  - {fileID: 1833434524}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -995,6 +939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adventureButton: {fileID: 1001911139}
+  Character: {fileID: 1997738671}
 --- !u!4 &913760637 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8976868363748247636, guid: 98edc4ca1da97a04983cf22b642aeb2f,
@@ -2249,6 +2194,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816425663}
   m_CullTransparentMesh: 0
+--- !u!21 &1833434524
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'marker-06Material
+
+    16756'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 99d6d15d2e014676956778b484a2f3e2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!43 &1875492102
 Mesh:
   m_ObjectHideFlags: 0
@@ -2517,6 +2490,7 @@ GameObject:
   - component: {fileID: 1997738667}
   - component: {fileID: 1997738666}
   - component: {fileID: 1997738665}
+  - component: {fileID: 1997738671}
   m_Layer: 0
   m_Name: Fino
   m_TagString: Untagged
@@ -2549,7 +2523,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 561435067}
+  - {fileID: 2064782385}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2629,6 +2603,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1997738671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997738664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe36c02c4e443654092d59b3c6155101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealingPeriod: 10
+  statsText: {fileID: 0}
+--- !u!21 &2064782385
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'stonesMaterial
+
+    16884'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: bb714ac6227343b78f4867fa74b426b9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &1027387990975796
 GameObject:
   m_ObjectHideFlags: 0
@@ -2655,12 +2671,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4575685725427440}
   - component: {fileID: 95367958489224052}
-  - component: {fileID: 1076264213298751}
-  - component: {fileID: 1076264213298752}
   - component: {fileID: 1076264213298753}
   - component: {fileID: 1076264213298754}
   - component: {fileID: 1076264213298755}
-  - component: {fileID: 1076264213298756}
   m_Layer: 0
   m_Name: micro_dragon_fino_happy
   m_TagString: Untagged
@@ -2668,32 +2681,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1076264213298751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1076264213298750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa3f7928deb353f4386e750a66d0d0fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HealingPeriod: 10
-  statsText: {fileID: 0}
---- !u!114 &1076264213298752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1076264213298750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de0b84e620c9d8e42809301d9627857e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1076264213298753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2844,21 +2831,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &1076264213298756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1076264213298750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ecb74c36bc76b7439f7b37237a3ba71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pointer: {fileID: 1324232137}
-  Target: {fileID: 1330595320}
-  test: {fileID: 1816425665}
 --- !u!1 &1120040909015004
 GameObject:
   m_ObjectHideFlags: 0

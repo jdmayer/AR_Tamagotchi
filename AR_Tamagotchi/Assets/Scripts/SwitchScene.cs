@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Character;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utils;
 using Vuforia;
@@ -11,11 +12,8 @@ namespace Monobehaviours
     public class SwitchScene : MonoBehaviour, IVirtualButtonEventHandler
     {
         public GameObject adventureButton;
-        public ICharacter Character;
+        public CharacterBasic Character;
 
-        // TODO
-        // Set new Fino attributes
-        // not same as those used in Helenas Part
         void Start()
         {
             adventureButton.GetComponent<VirtualButtonBehaviour>().RegisterEventHandler(this);
@@ -30,9 +28,11 @@ namespace Monobehaviours
             switch(SceneManager.GetActiveScene().name)
             {
                 case Constants.SceneAdventure:
+                    Character.SetPlayerPrefs();
                     SceneManager.LoadScene(Constants.SceneMain);
                     break;
                 case Constants.SceneMain:
+                    Character.SetPlayerPrefs();
                     SceneManager.LoadScene(Constants.SceneAdventure);
                     break;
             }
