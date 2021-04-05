@@ -370,7 +370,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295507761}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07580565fdb45374dbf8f1a6544ccd52, type: 3}
   m_Name: 
@@ -923,7 +923,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 295507766}
+      - m_Target: {fileID: 1390103651}
         m_MethodName: ExitButton
         m_Mode: 1
         m_Arguments:
@@ -1380,6 +1380,7 @@ GameObject:
   - component: {fileID: 1390103648}
   - component: {fileID: 1390103647}
   - component: {fileID: 1390103646}
+  - component: {fileID: 1390103651}
   m_Layer: 0
   m_Name: ARCamera
   m_TagString: MainCamera
@@ -1478,6 +1479,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1390103651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390103645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07580565fdb45374dbf8f1a6544ccd52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartButton: {fileID: 772564600}
 --- !u!1 &1524876314
 GameObject:
   m_ObjectHideFlags: 0
