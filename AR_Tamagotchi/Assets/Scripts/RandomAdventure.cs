@@ -37,11 +37,11 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
         GetComponent<TrackableBehaviour>().RegisterTrackableEventHandler(this);
         _audioSource = GetComponent<AudioSource>();
 
-        _exclamationMark = transform.Find(Constants.ExclamationMark).gameObject;
+        _exclamationMark = transform.Find(Prefabs.ExclamationMark).gameObject;
         _exclamationMark.SetActive(false);
-        _questionMark = transform.Find(Constants.QuestionMark).gameObject;
+        _questionMark = transform.Find(Prefabs.QuestionMark).gameObject;
         _questionMark.SetActive(false);
-        _vegetation = transform.Find(Constants.Vegetation).gameObject;
+        _vegetation = transform.Find(Prefabs.Vegetation).gameObject;
     }
 
     void Update()
@@ -108,9 +108,9 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
 
     public void ResetAdventure()
     {
-        var vegetationPrefabs = Constants.VegetationPrefabs;
+        var vegetationPrefabs = Prefabs.VegetationPrefabs;
         var randomIndex = Random.Range(0, vegetationPrefabs.Length);
-        var randomVegetation = $"{Constants.VegetationDirectory}{vegetationPrefabs[randomIndex]}";
+        var randomVegetation = $"{Prefabs.VegetationDirectory}{vegetationPrefabs[randomIndex]}";
         
         var vegetation = Resources.Load(randomVegetation) as GameObject;
 
