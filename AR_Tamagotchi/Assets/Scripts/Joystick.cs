@@ -21,7 +21,7 @@ namespace Monobehaviours
             transform.position = eventData.position;
             transform.localPosition = Vector2.ClampMagnitude(eventData.position - (Vector2)Pad.position, Pad.rect.width * 0.3f);
 
-            _move = new Vector3(transform.localPosition.x, 0, transform.localPosition.y).normalized;
+            _move = new Vector3((transform.localPosition.x * -1), 0, (transform.localPosition.y * -1)).normalized;
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -45,7 +45,7 @@ namespace Monobehaviours
                 
                 if (_move != Vector3.zero)
                 {
-                    Character.rotation = Quaternion.Slerp(Character.rotation, Quaternion.LookRotation(_move), 5 * Time.deltaTime);
+                    //Character.rotation = Quaternion.Slerp(Character.rotation, Quaternion.LookRotation(_move), 5 * Time.deltaTime);
                 }
 
                 yield return null;
