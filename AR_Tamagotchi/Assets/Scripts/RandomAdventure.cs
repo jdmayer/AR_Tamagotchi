@@ -125,6 +125,7 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
             var dragonPrefab = Resources.Load(Prefabs.DragonDirectory + Prefabs.DragonNeutral) as GameObject;
             _adventureObject = Instantiate(dragonPrefab, _vegetation.transform.position, _vegetation.transform.rotation, gameObject.transform);
             _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
+            Handheld.Vibrate();
         }
     }
 
