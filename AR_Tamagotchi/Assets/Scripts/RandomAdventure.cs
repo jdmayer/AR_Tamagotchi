@@ -22,7 +22,7 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
     private GameObject _exclamationMark;
     private GameObject _questionMark;
     private GameObject _vegetation;
-    private Transform _vegetationTransform;
+    private AudioSource _audioSource;
 
     private IList<TrackableBehaviour.Status> _trackableStatus = 
         new List<TrackableBehaviour.Status>() 
@@ -35,13 +35,13 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
     void Start()
     {
         GetComponent<TrackableBehaviour>().RegisterTrackableEventHandler(this);
+        _audioSource = GetComponent<AudioSource>();
 
         _exclamationMark = transform.Find(Constants.ExclamationMark).gameObject;
         _exclamationMark.SetActive(false);
         _questionMark = transform.Find(Constants.QuestionMark).gameObject;
         _questionMark.SetActive(false);
         _vegetation = transform.Find(Constants.Vegetation).gameObject;
-        _vegetationTransform = _vegetation.transform;
     }
 
     void Update()
@@ -84,12 +84,16 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
         float actualDistance = Vector3.Distance(Player.transform.position, transform.position);
         if (actualDistance <= MinDistance)
         {
-            //TODO ADD AUDIO
-            Debug.Log("SURPRISE!!");
-            _questionMark.SetActive(true);
+            if (!_questionMark.activeSelf)
+            {
+                _audioSource.Play();
+                Debug.Log("SURPRISE!!");
+                _questionMark.SetActive(true);
+            }
         }
         else
         {
+            _audioSource.Stop();
             _questionMark.SetActive(false);
         }
     }
