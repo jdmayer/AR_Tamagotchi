@@ -48,7 +48,7 @@ namespace Character
         private float max = 100;
         private float startAge;
         private float timer;
-        private float sec = 100f * Time.deltaTime;
+        private float sec = 100f;
 
         private bool gameOver = false;
         private bool wrongFood = false;
@@ -77,6 +77,7 @@ namespace Character
 
             overrider.SetAnimations(overrideController);
             textAge.text = "Age: " + startAge.ToString("F2");
+            sec = 100f * Time.deltaTime;
 
             //make pop ups not visibile upon game start
             happinessBubble.CrossFadeAlpha(0, 0.001f, true);

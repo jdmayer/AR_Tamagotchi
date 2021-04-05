@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Mon Apr 05 18:56:40 CEST 2021
+#Mon Apr 05 20:09:21 CEST 2021
 20.base=C\:\\Unity\\AR_Tamagotchi\\AR_Tamagotchi\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\out
 143.base=C\:\\Unity\\AR_Tamagotchi\\AR_Tamagotchi\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\out
 237.path=bin/Data/0550765fb22bb954ea0412b7153ff417
