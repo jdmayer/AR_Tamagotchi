@@ -1,4 +1,5 @@
-﻿/// <summary>
+﻿using UnityEngine;
+/// <summary>
 /// Author: Janine Mayer
 /// </summary>
 namespace Utils
@@ -22,5 +23,11 @@ namespace Utils
             "What’s the best thing about Switzerland? I don’t know, but the flag is a big plus.",
             "What do you call a fake noodle? An impasta."
         };
+
+        public static string GetRandomJoke()
+        {
+            var randomIndex = Random.Range(0, allJokes.Length);
+            return allJokes[randomIndex];
+        }
     }
 }
