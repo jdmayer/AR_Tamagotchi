@@ -1,4 +1,5 @@
-﻿/// <summary>
+﻿using System.Collections.Generic;
+/// <summary>
 /// Author: Janine Mayer
 /// </summary>
 namespace Utils
@@ -29,6 +30,24 @@ namespace Utils
 
         //Prefabs
         public const string ExclamationMark = "ExclamationMark";
-    }
+        public const string QuestionMark = "QuestionMark";
+        public const string Vegetation = "Vegetation";
 
+        public const string Bush_1_1 = "Bush_1_1";
+        public const string Bush_1_2 = "Bush_1_2";
+        public const string Grass_1_1 = "Grass_1_1";
+        public const string Grass_1_2 = "Grass_1_2";
+        public const string Grass_2_1 = "Grass_2_1";
+        public const string VegetationDirectoy = "Models/FreeVegetation-LowPolyNature/FreeVegetation/Prefabs/";
+
+        public static readonly string[] VegetationPrefabs =
+            new string[]
+            {
+                Bush_1_1,
+                Bush_1_2,
+                Grass_1_1,
+                Grass_1_2,
+                Grass_2_1
+            };
+    }
 }
