@@ -119,6 +119,7 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
             var gemPrefab = GetRandomPrefab(Prefabs.GemPrefabs, Prefabs.GemDirectory);
             _adventureObject = Instantiate(gemPrefab, _vegetation.transform.position, _vegetation.transform.rotation, gameObject.transform);
             _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
+
         }
         else
         {

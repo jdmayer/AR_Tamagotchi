@@ -30,17 +30,29 @@ namespace Utils
         public const string DragonDead = "micro_dragon_fino_dead";
         public const string DragonDirectory = "Models/Micro-Dragon-Fino/Prefabs/";
 
-        public const string Gem1 = "PurpCrystal00";
-        public const string Gem2 = "PurpCrystal05";
-        public const string Gem3 = "PurpCrystal07";
+        public const string EnergyGem1 = "PurpCrystal00";
+        public const string EnergyGem2 = "PurpCrystal05";
+        public const string EnergyGem3 = "PurpCrystal07";
+
+        public const string HealthGem1 = "BlueCrystal00";
+        public const string HealthGem2 = "BlueCrystal09";
+        public const string HealthGem3 = "BlueCrystal10";
+
+        public const string ExperienceGem = "GemStone04";
         public const string GemDirectory = "Models/Toon Crystals pack/Meshes/";
 
         public static readonly string[] GemPrefabs =
             new string[]
             {
-                Gem1,
-                Gem2,
-                Gem3
+                EnergyGem1,
+                EnergyGem2,
+                EnergyGem3,
+                ExperienceGem,
+                HealthGem1,
+                HealthGem2,
+                HealthGem3
             };
+
+
     }
 }
