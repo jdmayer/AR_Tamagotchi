@@ -27,6 +27,7 @@ namespace Utils
         public const string Die = "Die";
         public const string GetHit = "GetHit";
         public const string Dizzy = "Dizzy";
+        public const string IsOpen = "IsOpen";
 
         //GameObject names
         public const string Value = "Value";
