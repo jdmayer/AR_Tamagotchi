@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,6 +29,7 @@ namespace Character
 
         public int Level;
 
+        private const int MaxEnergy = 100;
         private int _energy;
         public int Energy
         {
@@ -57,24 +59,24 @@ namespace Character
         }
         protected int _maxHealth { get; private set; }
 
+        [SerializeField]
         public StatusBar HealthBar;
         public StatusBar EnergyBar;
         public StatusBar ExperienceBar;
 
-        private float NextHealing = 0.0f;
-        public float HealingPeriod = 10.0f;
+        private float NextStatUpdate = 0.0f;
+        public float StatUpdatePeriode = 2.0f;
+
+        public bool IsInFight = false;
 
         public Text statsText;
 
         public Character()
         {
-            ExperienceBar.SetMaxValue(100, 100);
-            HealthBar.SetMaxValue(100, 100);
-            EnergyBar.SetMaxValue(100, 100);
-
-            //TODO - check what else is needed!
-            ExperiencePoints = 0;
+            _maxHealth = 100;
             _health = 100;
+            _experiencePoints = 100;
+            Level = 1;
         }
 
         /// <summary>
@@ -100,27 +102,31 @@ namespace Character
         private void Start()
         {
             UpdateValuesWithPlayerPrefs();
+
+            HealthBar.SetMaxValue(100, 100);
+            EnergyBar.SetMaxValue(100, 100);
+            ExperienceBar.SetMaxValue(100, 100);
         }
 
         void Update()
         {
-            if (Time.time > NextHealing)
+        }
+
+        //TODO - update when not in fight
+        IEnumerator UpdateStats()
+        {
+            while (true)
             {
-                NextHealing += HealingPeriod;
-                _health = _health < _maxHealth ? 2 : 0;
+                if (Time.time > NextStatUpdate)
+                {
+                    NextStatUpdate += StatUpdatePeriode;
+                    Health = Health < _maxHealth ? 1 : 0;
+                    Energy = _health < MaxEnergy ? 1 : 0;
 
-                //TODO rm after testing
-                Energy -= 10;
-                _health -= 10;
+                }
+
+                yield return null;
             }
-
-            //statsText.text = $"Health: {Health}|{MaxHealth} - XP {ExperiencePoints}";
-
-            //if (Health <= 0)
-            //{
-            //    statsText.text += "... DEAD ...";
-            //    Debug.Log($"You killed FINO.");
-            //}
         }
 
         public override void UpdateValuesWithPlayerPrefs()
