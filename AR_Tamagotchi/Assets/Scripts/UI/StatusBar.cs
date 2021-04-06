@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 /// <summary>
 /// Author: Janine Mayer
@@ -13,12 +14,21 @@ namespace UI
         public void SetValue(int value)
         {
             slider.value = value;
+
+            var valueText = transform.Find(Constants.Value).GetComponent<Text>();
+            valueText.text = value.ToString();
         }
 
         public void SetMaxValue(int maxValue, int value)
         {
             slider.maxValue = maxValue;
             slider.value = value;
+
+            var valueText = transform.Find(Constants.Value).GetComponent<Text>();
+            valueText.text = value.ToString();
+
+            var maxValueText = transform.Find(Constants.Value).GetComponent<Text>();
+            maxValueText.text = $"/ {maxValue}";
         }
     }
 }

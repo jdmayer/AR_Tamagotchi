@@ -59,10 +59,10 @@ namespace Character
         }
         protected int _maxHealth { get; private set; }
 
-        [SerializeField]
         public StatusBar HealthBar;
         public StatusBar EnergyBar;
         public StatusBar ExperienceBar;
+        public Text LevelText;
 
         private float NextStatUpdate = 0.0f;
         public float StatUpdatePeriode = 2.0f;
@@ -87,6 +87,7 @@ namespace Character
         {
             var newLevel = Mathf.RoundToInt(100 * Mathf.Sqrt(ExperiencePoints));
             Level = Math.Max(newLevel, 1);
+            LevelText.text = Level.ToString();
         }
 
         //TODO check if they are reset with new XP

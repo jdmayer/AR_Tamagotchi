@@ -27,5 +27,9 @@ namespace Utils
         public const string Die = "Die";
         public const string GetHit = "GetHit";
         public const string Dizzy = "Dizzy";
+
+        //GameObject names
+        public const string Value = "Value";
+        public const string MaxValue = "MaxValue";
     }
 }
