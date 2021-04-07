@@ -27,7 +27,7 @@ namespace UI
             var valueText = transform.Find(Constants.Value).GetComponent<Text>();
             valueText.text = value.ToString();
 
-            var maxValueText = transform.Find(Constants.Value).GetComponent<Text>();
+            var maxValueText = transform.Find(Constants.MaxValue).GetComponent<Text>();
             maxValueText.text = $"/ {maxValue}";
         }
     }
