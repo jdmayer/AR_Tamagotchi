@@ -32,13 +32,7 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
     
     private bool _isActive;
 
-    private IList<TrackableBehaviour.Status> _trackableStatus = 
-        new List<TrackableBehaviour.Status>() 
-        { 
-            TrackableBehaviour.Status.DETECTED,
-            TrackableBehaviour.Status.EXTENDED_TRACKED,
-            TrackableBehaviour.Status.TRACKED 
-        };
+    
 
     void Start()
     {
@@ -170,10 +164,16 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
         _timer.StartTimer(_vegetation.transform);
     }
 
-    //move to other class - to detect help or item
-    //as long as nothing is shown - DO NOT PLAY SOUND
     public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus)
     {
+        IList<TrackableBehaviour.Status> _trackableStatus =
+        new List<TrackableBehaviour.Status>()
+        {
+            TrackableBehaviour.Status.DETECTED,
+            TrackableBehaviour.Status.EXTENDED_TRACKED,
+            TrackableBehaviour.Status.TRACKED
+        };
+
         if (_trackableStatus.Contains(newStatus))
         {
             _audioSource.mute = false;
