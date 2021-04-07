@@ -1,6 +1,7 @@
 ﻿using Character;
 using Item;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -15,12 +16,10 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
     public float MinDistance = 0.3f;
     public float RechargeTime = 60f;
     public float PossibilityOfGem = 30;
+
     public Text TimerTextPrefab;
     public Canvas Canvas;
-
-    private float _timeLeft = 0f;
-    private bool _hasTimeOut = false;
-    private Text _countDown;
+    private Timer _timer;
 
     private GameObject _exclamationMark;
     private GameObject _questionMark;
@@ -53,13 +52,14 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
         _vegetation = transform.Find(Prefabs.Vegetation).gameObject;
 
         _isActive = false;
+        _timer = new Timer(Canvas, TimerTextPrefab, RechargeTime);
     }
 
     void Update()
     {
-        if (_hasTimeOut)
+        if (_timer.HasTimeOut)
         {
-            UpdateTimer();
+            _timer.UpdateTimer(_vegetation.transform);
             return;
         }
         else if (!_isActive)
@@ -113,19 +113,31 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
 
         if (Random.Range(0, 100) <= PossibilityOfGem)
         {
-            var gemPrefab = GetRandomPrefab(Prefabs.GemPrefabs, Prefabs.GemDirectory);
-            _adventureObject = Instantiate(gemPrefab, _vegetation.transform.position, _vegetation.transform.rotation, gameObject.transform);
-            _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
-            Debug.Log(gemPrefab.name);
-            var gem = new GemStone(GemUtil.GetGemTypeByName(gemPrefab.name));
+            CreateRandomGem();
         }
         else
         {
-            var dragonPrefab = Resources.Load(Prefabs.DragonDirectory + Prefabs.DragonNeutral) as GameObject;
-            _adventureObject = Instantiate(dragonPrefab, _vegetation.transform.position, _vegetation.transform.rotation, gameObject.transform);
-            _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
-            Handheld.Vibrate();
+            CreateRandomEnemy();
+            //TODO - if win - randomgem, else - just reset everything
         }
+    }
+
+    private void CreateRandomGem()
+    {
+        var gemPrefab = GetRandomPrefab(Prefabs.GemPrefabs, Prefabs.GemDirectory);
+        _adventureObject = Instantiate(gemPrefab, _vegetation.transform.position, _vegetation.transform.rotation, gameObject.transform);
+        _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
+        Debug.Log(gemPrefab.name);
+        _gem = new GemStone(GemUtil.GetGemTypeByName(gemPrefab.name));
+        //destroy when "grabbing" - on virtual button down
+    }
+
+    private void CreateRandomEnemy()
+    {
+        var dragonPrefab = Resources.Load(Prefabs.DragonDirectory + Prefabs.DragonNeutral) as GameObject;
+        _adventureObject = Instantiate(dragonPrefab, _vegetation.transform.position, _vegetation.transform.rotation, gameObject.transform);
+        _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
+        Handheld.Vibrate();
     }
 
     private GameObject GetRandomPrefab(string[] objects, string directory)
@@ -155,39 +167,7 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
         }
 
         _isActive = false;
-        StartTimer();
-    }
-
-    private void StartTimer()
-    {
-        if (_countDown == null)
-        {
-            var countdownPos = Camera.main.WorldToScreenPoint(_vegetation.transform.position);
-            _countDown = Instantiate(TimerTextPrefab, Canvas.transform);
-            _countDown.transform.position = countdownPos;
-        }
-
-        _countDown.enabled = true;
-        _timeLeft = RechargeTime;
-        _hasTimeOut = true;
-    }
-
-    private void StopTimer()
-    {
-        _countDown.enabled = false;
-        _hasTimeOut = false;
-    }
-
-    private void UpdateTimer()
-    {
-        _timeLeft -= Time.deltaTime;
-        _countDown.text = $"{_timeLeft:00} seconds";
-        _countDown.transform.position = Camera.main.WorldToScreenPoint(_vegetation.transform.position);
-
-        if (_timeLeft < 0)
-        {
-            StopTimer();
-        }
+        _timer.StartTimer(_vegetation.transform);
     }
 
     //move to other class - to detect help or item
