@@ -1,4 +1,5 @@
-﻿/// <summary>
+﻿using System.Collections.Generic;
+/// <summary>
 /// Author: Janine Mayer
 /// </summary>
 namespace Utils
@@ -34,9 +35,25 @@ namespace Utils
         public const string EnergyGem2 = "PurpCrystal05";
         public const string EnergyGem3 = "PurpCrystal07";
 
+        public static readonly List<string> EnergyGems =
+            new List<string>
+            {
+                EnergyGem1,
+                EnergyGem2,
+                EnergyGem3
+            };
+
         public const string HealthGem1 = "BlueCrystal00";
         public const string HealthGem2 = "BlueCrystal09";
         public const string HealthGem3 = "BlueCrystal10";
+
+        public static readonly List<string> HealthGems =
+            new List<string>
+            {
+                HealthGem1,
+                HealthGem2,
+                HealthGem3
+            };
 
         public const string ExperienceGem = "GemStone04";
         public const string GemDirectory = "Models/Toon Crystals pack/Meshes/";
@@ -52,7 +69,5 @@ namespace Utils
                 HealthGem2,
                 HealthGem3
             };
-
-
     }
 }

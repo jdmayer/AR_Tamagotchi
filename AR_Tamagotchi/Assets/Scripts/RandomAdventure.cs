@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Character;
+using Item;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -26,6 +28,9 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
     private GameObject _adventureObject;
     private AudioSource _audioSource;
 
+    private GemStone _gem;
+    private Enemy _enemy;
+    
     private bool _isActive;
 
     private IList<TrackableBehaviour.Status> _trackableStatus = 
@@ -54,15 +59,7 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
     {
         if (_hasTimeOut)
         {
-            _timeLeft -= Time.deltaTime;
-            _countDown.text = $"{_timeLeft:00} seconds";
-            _countDown.transform.position = Camera.main.WorldToScreenPoint(_vegetation.transform.position);
-
-            if (_timeLeft < 0)
-            {
-                StopTimer();
-            }
-
+            UpdateTimer();
             return;
         }
         else if (!_isActive)
@@ -119,7 +116,8 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
             var gemPrefab = GetRandomPrefab(Prefabs.GemPrefabs, Prefabs.GemDirectory);
             _adventureObject = Instantiate(gemPrefab, _vegetation.transform.position, _vegetation.transform.rotation, gameObject.transform);
             _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
-
+            Debug.Log(gemPrefab.name);
+            var gem = new GemStone(GemUtil.GetGemTypeByName(gemPrefab.name));
         }
         else
         {
@@ -178,6 +176,18 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
     {
         _countDown.enabled = false;
         _hasTimeOut = false;
+    }
+
+    private void UpdateTimer()
+    {
+        _timeLeft -= Time.deltaTime;
+        _countDown.text = $"{_timeLeft:00} seconds";
+        _countDown.transform.position = Camera.main.WorldToScreenPoint(_vegetation.transform.position);
+
+        if (_timeLeft < 0)
+        {
+            StopTimer();
+        }
     }
 
     //move to other class - to detect help or item
