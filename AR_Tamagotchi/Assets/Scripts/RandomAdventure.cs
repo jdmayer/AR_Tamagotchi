@@ -21,6 +21,7 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
     public Canvas Canvas;
     private Timer _timer;
 
+    private GameObject _fino;
     private GameObject _exclamationMark;
     private GameObject _questionMark;
     private GameObject _vegetation;
@@ -39,6 +40,8 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
         GetComponent<TrackableBehaviour>().RegisterTrackableEventHandler(this);
         _audioSource = GetComponent<AudioSource>();
 
+        _fino = GameObject.Find("Fino/micro_dragon_fino_happy");
+        Debug.Log(_fino);
         _exclamationMark = transform.Find(Prefabs.ExclamationMark).gameObject;
         _exclamationMark.SetActive(false);
         _questionMark = transform.Find(Prefabs.QuestionMark).gameObject;
@@ -129,7 +132,8 @@ public class RandomAdventure : MonoBehaviour, ITrackableEventHandler
     private void CreateRandomEnemy()
     {
         var dragonPrefab = Resources.Load(Prefabs.DragonDirectory + Prefabs.DragonNeutral) as GameObject;
-        _adventureObject = Instantiate(dragonPrefab, _vegetation.transform.position, _vegetation.transform.rotation, gameObject.transform);
+        var newRotation = Quaternion.LookRotation(_fino.transform.position) * Quaternion.AngleAxis(90, transform.up);
+        _adventureObject = Instantiate(dragonPrefab, _vegetation.transform.position, newRotation, gameObject.transform);
         _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
         Handheld.Vibrate();
     }

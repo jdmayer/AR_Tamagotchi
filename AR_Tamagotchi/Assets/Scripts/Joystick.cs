@@ -45,7 +45,7 @@ namespace Monobehaviours
                 
                 if (_move != Vector3.zero)
                 {
-                    //Character.rotation = Quaternion.Slerp(Character.rotation, Quaternion.LookRotation(_move), 5 * Time.deltaTime);
+                    Character.rotation = Quaternion.Slerp(Character.rotation, Quaternion.LookRotation(_move), 5 * Time.deltaTime);
                 }
 
                 yield return null;
