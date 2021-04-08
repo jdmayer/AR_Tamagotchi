@@ -73,13 +73,14 @@ namespace Interaction
             }
             else if (State == AdventureState.IsInactive)
             {
-                SetAttentionMark();
+                CheckForInteraction();
 
-                if (Input.GetKeyUp("t"))
-                {
-                    Debug.Log("Discover adventure");
-                    DiscoverAdventure();
-                }
+
+            }
+            else if (State == AdventureState.IsActive || State == AdventureState.IsBeingAttacked || State == AdventureState.IsFighting)
+            {
+                var targetPosition = new Vector3(_fino.transform.position.x, _adventureObject.transform.position.y, _fino.transform.position.z);
+                _adventureObject.transform.LookAt(targetPosition);
             }
 
             if (Input.GetKeyUp("l"))
@@ -97,7 +98,7 @@ namespace Interaction
             return _adventureObject;
         }
 
-        private void SetAttentionMark()
+        private void CheckForInteraction()
         {
             float actualDistance = Vector3.Distance(_fino.transform.position, transform.position);
             if (actualDistance <= MinDistance)
@@ -106,6 +107,12 @@ namespace Interaction
                 {
                     _audioSource.Play();
                     _questionMark.SetActive(true);
+                }
+
+                if (Input.GetKeyUp("t"))
+                {
+                    Debug.Log("Discover adventure");
+                    DiscoverAdventure();
                 }
             }
             else
@@ -154,13 +161,12 @@ namespace Interaction
             State = AdventureState.IsFighting;
 
             var statusBarPrefab = Resources.Load(Prefabs.StatusBar) as GameObject;
-            var statusBarPosition = Camera.main.WorldToScreenPoint(_vegetation.transform.position);
+            var statusBarPosition = Camera.main.WorldToScreenPoint(_vegetation.transform.position) + new Vector3(0, 0.5f);
             GameObject enemyStats = Instantiate(statusBarPrefab, statusBarPosition, Quaternion.Euler(0, 0, 0), Canvas.transform);
             StatusBar bar = enemyStats.transform.GetChild(0).GetComponent<StatusBar>();
 
             var dragonPrefab = Resources.Load(Prefabs.DragonDirectory + Prefabs.DragonNeutral) as GameObject;
-            var newRotation = Quaternion.LookRotation(_fino.transform.position) * Quaternion.AngleAxis(90, transform.up);
-            _adventureObject = Instantiate(dragonPrefab, _vegetation.transform.position, newRotation, gameObject.transform);
+            _adventureObject = Instantiate(dragonPrefab, _vegetation.transform.position, _fino.transform.rotation, gameObject.transform);
             _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
 
             _adventureObject.AddComponent<Animator>();

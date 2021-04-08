@@ -72,8 +72,6 @@ namespace Character
             }
         }
 
-        //TODO destroy gameobject when win/lose after final dialog
-
         public void UpdateStatPosition(Transform parent)
         {
             StatusBar.gameObject.transform.position = Camera.main.WorldToScreenPoint(parent.position); 
