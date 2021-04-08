@@ -129,11 +129,12 @@ namespace Interaction
             _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
             Debug.Log(gemPrefab.name);
             _gem = new GemStone(GemUtil.GetGemTypeByName(gemPrefab.name));
-            //destroy when "grabbing" - on virtual button down
+            TriggerDialog(_gem.GetGemDialog());
         }
 
         private void CreateRandomEnemy()
         {
+            IsFighting = true;
             var statusBarPrefab = Resources.Load(Prefabs.StatusBar) as GameObject;
             var statusBarPosition = Camera.main.WorldToScreenPoint(_vegetation.transform.position);
             GameObject enemyStats = Instantiate(statusBarPrefab, statusBarPosition, Quaternion.Euler(0, 0, 0), Canvas.transform);
@@ -169,6 +170,7 @@ namespace Interaction
 
         public void WinFight()
         {
+            IsFighting = false;
             TriggerDialog(_enemy.LoseDialog);
             StopCoroutine("UpdateEnemyStatusBarPosition");
             //TODO on continue:
@@ -181,16 +183,22 @@ namespace Interaction
 
         public void LoseFight()
         {
+            IsFighting = false;
             TriggerDialog(_enemy.WinDialog);
             StopCoroutine("UpdateEnemyStatusBarPosition");
             //TODO - Add Dialog and go back to 
         }
 
+        public void UseGemStone()
+        {
+            _gem.UseGemStone(Player);
+
+        }
+
+        //should only be able when fight is lost/won and no gem is there anymore
         public void ResetAdventure()
         {
-
-
-            Destroy(_adventureObject);
+            //Destroy(_adventureObject);
 
             var randomVegetation = GetRandomPrefab(Prefabs.VegetationPrefabs, Prefabs.VegetationDirectory);
             if (randomVegetation == null)

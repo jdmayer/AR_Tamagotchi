@@ -1,12 +1,13 @@
 ﻿using UI;
 using UnityEngine;
 
+/// <summary>
+/// Author: Janine Mayer
+/// </summary>
 namespace Item
 {
     public class GemStone : MonoBehaviour
     {
-        public GameObject Gem;
-
         private GemType _gemType;
         private int _power;
 
@@ -16,10 +17,27 @@ namespace Item
             _power = Random.Range(1, 4) * 10;
         }
 
-        public void UseGemStone()
+        public void UseGemStone(Character.Character player)
         {
+            switch (_gemType)
+            {
+                case GemType.Health:
+                    player.Health += _power;
+                    break;
+                case GemType.Experience:
+                    player.ExperiencePoints += _power;
+                    break;
+                case GemType.Energy:
+                default:
+                    player.Energy += _power;
+                    break;
+            }
+
+            Debug.Log(_power);
+            Debug.Log("Use and destroy!");
+
             _power = 0;
-            Destroy(Gem);
+            Destroy(gameObject);
         }
 
         public Dialog GetGemDialog()
@@ -27,12 +45,12 @@ namespace Item
             switch(_gemType)
             {
                 case GemType.Health:
-                    return new Dialog("Health Stone", $"This stone gives you {_power} Health Points.");
+                    return new Dialog("Health Stone", $"This stone gives you {_power} Health Points. Grab it!");
                 case GemType.Experience:
-                    return new Dialog("Experience Stone", $"This stone gives you {_power} Experience Points.");
+                    return new Dialog("Experience Stone", $"This stone gives you {_power} Experience Points. Grab it!");
                 case GemType.Energy:
                 default:
-                    return new Dialog("Energy Stone", $"This stone gives you {_power} Energy Points.");
+                    return new Dialog("Energy Stone", $"This stone gives you {_power} Energy Points. Grab it!");
             }
         }
     }

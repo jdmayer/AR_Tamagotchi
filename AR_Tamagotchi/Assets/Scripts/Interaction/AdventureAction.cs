@@ -22,9 +22,15 @@ namespace Interaction
         {
             if (RandomAdventure.IsActive)
             {
-                StartCoroutine(Constants.TickleEnemy);
+                if (RandomAdventure.IsFighting)
+                {
+                    StartCoroutine(Constants.TickleEnemy);
+                }
+                else
+                {
+                    RandomAdventure.UseGemStone();
+                }
             }
-            Debug.Log("PRESSSS!!");
         }
 
         public void OnButtonReleased(VirtualButtonBehaviour vb)
@@ -33,7 +39,6 @@ namespace Interaction
             {
                 StopCoroutine(Constants.TickleEnemy);
             }
-            Debug.Log("Release the kraken!!");
         }
 
         IEnumerable TickleEnemy()

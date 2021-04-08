@@ -13,6 +13,7 @@ namespace Character
     public class Character : CharacterBasic
     {
         private int _experiencePoints;
+        private int _maxExperiencePoints;
         public int ExperiencePoints {
             get
             {
@@ -39,7 +40,7 @@ namespace Character
             }
             set
             {
-                _energy = value;
+                _energy = value > MaxEnergy ? MaxEnergy : value;
                 EnergyBar.SetValue(_energy);
             }
         }
@@ -53,7 +54,7 @@ namespace Character
             }
             set
             {
-                _health = value;
+                _health = value > _maxHealth ? _maxHealth : value;
                 HealthBar.SetValue(_health);
             }
         }
@@ -88,9 +89,11 @@ namespace Character
             var newLevel = Mathf.RoundToInt(100 * Mathf.Sqrt(ExperiencePoints));
             Level = Math.Max(newLevel, 1);
             LevelText.text = Level.ToString();
+
+            _maxExperiencePoints = Convert.ToInt32(Mathf.Pow((newLevel / 100), 2.0f));
+            ExperienceBar.SetMaxValue(_maxExperiencePoints, ExperiencePoints);
         }
 
-        //TODO check if they are reset with new XP
         private void SetMaxHealth()
         {
             var prevMaxHealth = _maxHealth;
