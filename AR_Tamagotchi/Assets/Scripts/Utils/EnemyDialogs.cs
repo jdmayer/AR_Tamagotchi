@@ -61,6 +61,14 @@ namespace Utils
             LoseDialog5
         };
 
+        public static readonly string[] Laughs = new string[] {
+            "Muhahahhahaa hahah ha.",
+            "Hihihi!",
+            "Ha Ha Ha Ha!",
+            "Hehehe hehe hehe!",
+            "Hu hu hu. Hu hu hu."
+        };
+
         public const string Name0 = "Helga";
         public const string Name1 = "Ulfric";
         public const string Name2 = "Guard";

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utils;
 using Vuforia;
@@ -211,30 +212,45 @@ namespace Interaction
 
         public void EnemyReaction()
         {
-            Debug.Log("laugh!");
+            _dialogManager.StartDialog(_enemy.LaughDialog, EnemyAttack);
+            _adventureObject.gameObject.GetComponent<Animator>().SetTrigger(Constants.Laugh);
+            _enemy.TakeDamage();
+
+            if (_enemy.Anger == 0)
+            {
+                WinFight();
+            }
+        }
+
+        public void EnemyAttack()
+        {
             State = AdventureState.IsBeingAttacked; // TODO depend on strength!
+
+            Debug.Log("enemy attacks");
         }
 
         public void WinFight()
         {
-            TriggerDialog(_enemy.LoseDialog);
+            _dialogManager.StartDialog(_enemy.LoseDialog, CreateRandomGem);
             StopCoroutine("UpdateEnemyStatusBarPosition");
-            //TODO on continue:
-            //IsFighting = false;
-            //Destroy(_enemy.StatusBar.gameObject);
-            //Destroy(_adventureObject);
-
-            //CreateRandomGem();
-            //reset everything!
+            Destroy(_enemy.StatusBar.gameObject);
+            Destroy(_adventureObject);
             State = AdventureState.IsDone;
         }
 
         public void LoseFight()
         {
-            TriggerDialog(_enemy.WinDialog);
             StopCoroutine("UpdateEnemyStatusBarPosition");
-            //TODO - Add Dialog and go back to 
             State = AdventureState.IsDone;
+            _dialogManager.StartDialog(_enemy.WinDialog, ReturnToMainScene);
+        }
+
+        private void ReturnToMainScene()
+        {
+            ResetAdventure();
+            Player.SetPlayerPrefs();
+            Debug.Log("You kinda lost.");
+            SceneManager.LoadScene(Constants.SceneMain);
         }
 
         public void UseGemStone()
@@ -248,7 +264,6 @@ namespace Interaction
             _dialogManager.StartDialog(_gem.UsedDialog, ResetAdventure);
         }
 
-        //should only be able when fight is lost/won and no gem is there anymore
         public void ResetAdventure()
         {
             if (State != AdventureState.IsDone)

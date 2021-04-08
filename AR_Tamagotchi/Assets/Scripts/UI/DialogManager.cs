@@ -59,7 +59,6 @@ namespace UI
 
             if (_callBack != null)
             {
-                Debug.Log("do callback!!");
                 _callBack();
             }
         }

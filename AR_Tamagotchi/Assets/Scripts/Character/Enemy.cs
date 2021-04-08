@@ -21,6 +21,7 @@ namespace Character
         public readonly Dialog StartDialog;
         public readonly Dialog WinDialog;
         public readonly Dialog LoseDialog;
+        public readonly Dialog LaughDialog;
 
         public StatusBar StatusBar;
 
@@ -35,6 +36,9 @@ namespace Character
             
             var loseSentence = EnemyDialogs.LoseDialogs[Random.Range(0, EnemyDialogs.LoseDialogs.Length)];
             LoseDialog = new Dialog(_name, loseSentence);
+
+            var laughSentence = EnemyDialogs.Laughs[Random.Range(0, EnemyDialogs.Laughs.Length)];
+            LaughDialog = new Dialog(_name, laughSentence);
 
             Level = Mathf.Max(Random.Range(playerLevel - 2, playerLevel + 2), 1);
             _maxAnger = 10 * Level + 100;
@@ -51,9 +55,10 @@ namespace Character
             return Random.Range(_minAttackStrength, _maxAttackStrength);
         }
         
-        public void TakeDamage(int damage)
+        public void TakeDamage()
         {
-            Anger -= damage;
+            var maxDamage = (int)(_maxAnger * 0.75);
+            Anger -= Random.Range(10, maxDamage);
             Anger = Mathf.Max(0, Anger);
             StatusBar.SetValue(Anger);
 
