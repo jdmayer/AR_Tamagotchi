@@ -43,7 +43,9 @@ namespace Character
             Level = Mathf.Max(Random.Range(playerLevel - 2, playerLevel + 2), 1);
             _maxAnger = 10 * Level + 100;
             Anger = _maxAnger;
-            Debug.Log($"Enemy Level: {Level}");
+
+            _minAttackStrength = Level * 10;
+            _maxAttackStrength = _maxAnger / 2;
 
             StatusBar = statusBar;
             StatusBar.SetMaxValue(_maxAnger, _maxAnger);
@@ -52,6 +54,8 @@ namespace Character
 
         public int DealDamage()
         {
+            Debug.Log(_minAttackStrength);
+            Debug.Log(_maxAttackStrength);
             return Random.Range(_minAttackStrength, _maxAttackStrength);
         }
         

@@ -26,7 +26,7 @@ namespace Item
             switch (_gemType)
             {
                 case GemType.Health:
-                    player.Health += _power;
+                    player.Health = player.Health + _power;
                     break;
                 case GemType.Experience:
                     player.ExperiencePoints += _power;

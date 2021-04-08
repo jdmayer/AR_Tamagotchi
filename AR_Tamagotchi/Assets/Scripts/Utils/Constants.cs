@@ -30,6 +30,8 @@ namespace Utils
         public const string Dizzy = "Dizzy";
         public const string IsOpen = "IsOpen";
 
+        public const string EntityControllerPath = "Graphics/AnimationController/EntityController";
+
         //GameObject names
         public const string Value = "Value";
         public const string MaxValue = "MaxValue";

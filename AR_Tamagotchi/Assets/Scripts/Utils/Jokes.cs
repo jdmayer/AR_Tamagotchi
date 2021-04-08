@@ -18,10 +18,11 @@ namespace Utils
             "Why did the chicken go to the séance? To get to the other side.",
             "Why don’t scientists trust atoms? Because they make up everything.",
             "Did you hear about the claustrophobic astronaut? He just needed a little space.",
-            "A bear walks into a bar and says, 'Give me a whiskey and … cola' 'Why the big pause?' asks the bartender. The bear shrugged. 'I’m not sure; I was born with them.'",
             "Hear about the new restaurant called Karma? There’s no menu: You get what you deserve.",
             "What’s the best thing about Switzerland? I don’t know, but the flag is a big plus.",
-            "What do you call a fake noodle? An impasta."
+            "What do you call a fake noodle? An impasta.",
+            "Why are skeletons so calm? Because nothing gets under their skin.",
+            "Where does the sheep get his hair cut? The baa baa shop!"
         };
 
         public static string GetRandomJoke()

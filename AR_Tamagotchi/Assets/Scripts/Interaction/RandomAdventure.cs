@@ -2,6 +2,7 @@
 using Item;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -27,7 +28,7 @@ namespace Interaction
 
         public Text TimerTextPrefab;
         public Canvas Canvas;
-        private Timer _timer;
+        private UI.Timer _timer;
 
         private GameObject _fino;
         private GameObject _exclamationMark;
@@ -58,7 +59,7 @@ namespace Interaction
             _vegetation = transform.Find(Prefabs.Vegetation).gameObject;
 
             State = AdventureState.IsInactive;
-            _timer = new Timer(Canvas, TimerTextPrefab, RechargeTime);
+            _timer = new UI.Timer(Canvas, TimerTextPrefab, RechargeTime);
 
             HideFightOptions();
         }
@@ -79,6 +80,15 @@ namespace Interaction
                     Debug.Log("Discover adventure");
                     DiscoverAdventure();
                 }
+            }
+
+            if (Input.GetKeyUp("l"))
+            {
+            _adventureObject.GetComponent<Animator>().SetTrigger(Constants.Loop);
+            }
+            if (Input.GetKeyUp("k"))
+            {
+            _adventureObject.GetComponent<Animator>().SetTrigger(Constants.Laugh);
             }
         }
 
@@ -157,7 +167,11 @@ namespace Interaction
             var newRotation = Quaternion.LookRotation(_fino.transform.position) * Quaternion.AngleAxis(90, transform.up);
             _adventureObject = Instantiate(dragonPrefab, _vegetation.transform.position, newRotation, gameObject.transform);
             _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
+
             _adventureObject.AddComponent<Animator>();
+            var entityController = Resources.Load(Constants.EntityControllerPath) as RuntimeAnimatorController;
+            _adventureObject.GetComponent<Animator>().runtimeAnimatorController = entityController;
+
             Handheld.Vibrate();
 
             _enemy = new Enemy(Player.Level, bar);
@@ -215,12 +229,17 @@ namespace Interaction
             }
         }
 
+        
+
         public void EnemyAttack()
         {
             State = AdventureState.IsBeingAttacked;
-            var damage = _enemy.DealDamage();
-            Player.Health -= damage;
-            //todo add animations
+
+            _adventureObject.GetComponent<Animator>().SetTrigger(Constants.Attack);
+            _fino.GetComponent<Animator>().SetTrigger(Constants.GetHit);
+            _fino.GetComponent<Animator>().SetTrigger(Constants.Dizzy);
+
+            Player.Health = Player.Health - _enemy.DealDamage();
 
             if (Player.Health == 0)
             {
@@ -228,8 +247,14 @@ namespace Interaction
             }
             else
             {
-                _dialogManager.StartDialog(new Dialog(Player.Name, "Ouch ..."), DisplayFightOptions);
+                _dialogManager.StartDialog(new Dialog(Player.Name, "You've been attacked! Ouch ..."), EndEnemyAttack);
             }
+        }
+
+        public void EndEnemyAttack()
+        {
+            StopCoroutine("DisplayAttackAnimation");
+            DisplayFightOptions();
         }
 
         public void WinFight()

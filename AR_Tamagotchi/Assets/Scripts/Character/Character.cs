@@ -56,10 +56,13 @@ namespace Character
             }
             set
             {
+                Debug.Log(value);
+                Debug.Log(_maxHealth);
                 _health = value > _maxHealth ? _maxHealth : value;
                 HealthBar.SetValue(_health);
             }
         }
+
         protected int _maxHealth { get; private set; }
 
         public StatusBar HealthBar;
