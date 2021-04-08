@@ -1,5 +1,6 @@
 ﻿using Character;
 using Item;
+using System.Collections;
 using System.Collections.Generic;
 using UI;
 using UnityEngine;
@@ -33,9 +34,8 @@ namespace Interaction
         private GemStone _gem;
         private Enemy _enemy;
 
-        private bool _isActive;
-
-
+        public bool IsFighting;
+        public bool IsActive;
 
         void Start()
         {
@@ -50,7 +50,8 @@ namespace Interaction
             _questionMark.SetActive(false);
             _vegetation = transform.Find(Prefabs.Vegetation).gameObject;
 
-            _isActive = false;
+            IsActive = false;
+            IsFighting = false;
             _timer = new Timer(Canvas, TimerTextPrefab, RechargeTime);
         }
 
@@ -61,19 +62,19 @@ namespace Interaction
                 _timer.UpdateTimer(_vegetation.transform);
                 return;
             }
-            else if (!_isActive)
+            else if (!IsActive)
             {
                 SetAttentionMark();
             }
 
             // TODO Remove for PROD
-            if (Input.GetKeyUp("t") && !_isActive)
+            if (Input.GetKeyUp("t") && !IsActive)
             {
                 Debug.Log("Discover adventure");
                 DiscoverAdventure();
             }
 
-            if (Input.GetKeyUp("r") && _isActive)
+            if (Input.GetKeyUp("r") && IsActive)
             {
                 Debug.Log("Reset adventure");
                 ResetAdventure();
@@ -100,12 +101,12 @@ namespace Interaction
 
         public void DiscoverAdventure()
         {
-            if (_isActive)
+            if (IsActive)
             {
                 return;
             }
 
-            _isActive = true;
+            IsActive = true;
 
             _questionMark.SetActive(false);
             _vegetation.SetActive(false);
@@ -133,15 +134,30 @@ namespace Interaction
 
         private void CreateRandomEnemy()
         {
+            var statusBarPrefab = Resources.Load(Prefabs.StatusBar) as GameObject;
+            var statusBarPosition = Camera.main.WorldToScreenPoint(_vegetation.transform.position);
+            GameObject enemyStats = Instantiate(statusBarPrefab, statusBarPosition, Quaternion.Euler(0, 0, 0), Canvas.transform);
+            StatusBar bar = enemyStats.transform.GetChild(0).GetComponent<StatusBar>();
+
             var dragonPrefab = Resources.Load(Prefabs.DragonDirectory + Prefabs.DragonNeutral) as GameObject;
             var newRotation = Quaternion.LookRotation(_fino.transform.position) * Quaternion.AngleAxis(90, transform.up);
             _adventureObject = Instantiate(dragonPrefab, _vegetation.transform.position, newRotation, gameObject.transform);
             _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
             Handheld.Vibrate();
 
-            var enemy = new Enemy(Player.Level);
-            TriggerDialog(enemy.StartDialog);
-            
+            _enemy = new Enemy(Player.Level, bar);
+            StartCoroutine("UpdateEnemyStatusBarPosition");
+            TriggerDialog(_enemy.StartDialog);
+        }
+
+        public GemStone GetActiveGem()
+        {
+            return _gem;
+        }
+
+        public Enemy GetActiveEnemy()
+        {
+            return _enemy;
         }
 
         private GameObject GetRandomPrefab(string[] objects, string directory)
@@ -151,8 +167,29 @@ namespace Interaction
             return Resources.Load(randomPrefabName) as GameObject;
         }
 
+        public void WinFight()
+        {
+            TriggerDialog(_enemy.LoseDialog);
+            StopCoroutine("UpdateEnemyStatusBarPosition");
+            //TODO on continue:
+            //IsFighting = false;
+            //Destroy(_enemy.StatusBar.gameObject);
+            //Destroy(_adventureObject);
+
+            //CreateRandomGem();
+        }
+
+        public void LoseFight()
+        {
+            TriggerDialog(_enemy.WinDialog);
+            StopCoroutine("UpdateEnemyStatusBarPosition");
+            //TODO - Add Dialog and go back to 
+        }
+
         public void ResetAdventure()
         {
+
+
             Destroy(_adventureObject);
 
             var randomVegetation = GetRandomPrefab(Prefabs.VegetationPrefabs, Prefabs.VegetationDirectory);
@@ -170,8 +207,17 @@ namespace Interaction
                 _vegetation = newVegetation;
             }
 
-            _isActive = false;
+            IsActive = false;
             _timer.StartTimer(_vegetation.transform);
+        }
+
+        IEnumerator UpdateEnemyStatusBarPosition()
+        {
+            while (true)
+            {
+                _enemy.UpdateStatPosition(this.transform);
+                yield return null;
+            }
         }
 
         public void TriggerDialog(Dialog dialog)

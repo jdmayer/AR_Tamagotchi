@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using Utils;
 using Vuforia;
 
 /// <summary>
@@ -15,23 +17,33 @@ namespace Interaction
             GameObject vb = GameObject.Find("VirtualButton");
             vb.GetComponent<VirtualButtonBehaviour>().RegisterEventHandler(this);
         }
-
-        void Update()
-        {
-
-        }
-        
+                
         public void OnButtonPressed(VirtualButtonBehaviour vb)
         {
+            if (RandomAdventure.IsActive)
+            {
+                StartCoroutine(Constants.TickleEnemy);
+            }
             Debug.Log("PRESSSS!!");
-            //call some method of random Adventure!
-            //allow tickling! - on pressed - start gíggle animation
-            //on released stop it!
         }
 
         public void OnButtonReleased(VirtualButtonBehaviour vb)
         {
+            if (RandomAdventure.IsActive)
+            {
+                StopCoroutine(Constants.TickleEnemy);
+            }
             Debug.Log("Release the kraken!!");
+        }
+
+        IEnumerable TickleEnemy()
+        {
+            while (true)
+            {
+                Debug.Log("tickle!!");
+                //show him laughing - decrease anger - but only for so long
+                yield return null;
+            }
         }
     }
 }

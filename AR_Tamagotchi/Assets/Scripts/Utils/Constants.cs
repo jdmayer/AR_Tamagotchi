@@ -17,6 +17,7 @@ namespace Utils
         //CoRoutines
         public const string CharacterMove = "CharacterMove";
         public const string UpdateStats = "UpdateStats";
+        public const string TickleEnemy = "TickleEnemy";
 
         //Animations
         public const string Loop = "Action";

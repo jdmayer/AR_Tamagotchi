@@ -1,5 +1,6 @@
 ﻿using UI;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils;
 
 /// <summary>
@@ -10,8 +11,8 @@ namespace Character
     public class Enemy
     {
         public int Level;
-        public readonly int maxAnger;
         public int Anger;
+        private readonly int _maxAnger;
 
         private readonly int _maxAttackStrength;
         private readonly int _minAttackStrength;
@@ -21,7 +22,9 @@ namespace Character
         public readonly Dialog WinDialog;
         public readonly Dialog LoseDialog;
 
-        public Enemy(int playerLevel)
+        public StatusBar StatusBar;
+
+        public Enemy(int playerLevel, StatusBar statusBar)
         {
             _name = EnemyDialogs.Names[Random.Range(0, EnemyDialogs.Names.Length)];
             var startSentence = EnemyDialogs.Dialogs[Random.Range(0, EnemyDialogs.Names.Length)];
@@ -34,10 +37,13 @@ namespace Character
             LoseDialog = new Dialog(_name, loseSentence);
 
             Level = Mathf.Max(Random.Range(playerLevel - 2, playerLevel + 2), 1);
-            maxAnger = 10 * Level + 100;
-            Anger = maxAnger;
+            _maxAnger = 10 * Level + 100;
+            Anger = _maxAnger;
             Debug.Log($"Enemy Level: {Level}");
-            Debug.Log($"Enemy MaxAnger: {maxAnger}");
+
+            StatusBar = statusBar;
+            StatusBar.SetMaxValue(_maxAnger, _maxAnger);
+            //TODO set level and text!
         }
 
         public int DealDamage()
@@ -48,11 +54,18 @@ namespace Character
         public void TakeDamage(int damage)
         {
             Anger -= damage;
+            Anger = Mathf.Max(0, Anger);
+            StatusBar.SetValue(Anger);
 
             if (Anger <= 0)
             {
                 Debug.Log("LOL HE DED");
             }
+        }
+
+        public void UpdateStatPosition(Transform parent)
+        {
+            StatusBar.gameObject.transform.position = Camera.main.WorldToScreenPoint(parent.position); 
         }
     }
 }

@@ -69,5 +69,7 @@ namespace Utils
                 HealthGem2,
                 HealthGem3
             };
+
+        public const string StatusBar = "Prefabs/StatusBarObject";
     }
 }
