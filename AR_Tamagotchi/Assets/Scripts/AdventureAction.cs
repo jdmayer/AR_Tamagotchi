@@ -4,7 +4,7 @@ using Vuforia;
 /// <summary>
 /// Author: Janine Mayer
 /// </summary>
-namespace Monobehaviours
+namespace Interaction
 {
     public class AdventureAction : MonoBehaviour, IVirtualButtonEventHandler
     {

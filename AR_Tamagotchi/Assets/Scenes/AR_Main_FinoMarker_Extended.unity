@@ -2649,7 +2649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 890497fade4de4446afdaf779914310a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1076264213298750}
+  Player: {fileID: 1997738671}
   MinDistance: 0.3
   RechargeTime: 10
   PossibilityOfGem: 30

@@ -10,34 +10,34 @@ namespace Character
     public class Enemy
     {
         public int Level;
-        public readonly int maxHealth;
-        public int Health;
+        public readonly int maxAnger;
+        public int Anger;
 
         private readonly int _maxAttackStrength;
         private readonly int _minAttackStrength;
 
         private readonly string _name;
-        private readonly Dialog _startDialog;
-        private readonly Dialog _winDialog;
-        private readonly Dialog _loseDialog;
+        public readonly Dialog StartDialog;
+        public readonly Dialog WinDialog;
+        public readonly Dialog LoseDialog;
 
         public Enemy(int playerLevel)
         {
             _name = EnemyDialogs.Names[Random.Range(0, EnemyDialogs.Names.Length)];
             var startSentence = EnemyDialogs.Dialogs[Random.Range(0, EnemyDialogs.Names.Length)];
-            _startDialog = new Dialog(_name, startSentence);
+            StartDialog = new Dialog(_name, startSentence);
 
-            var winSentence = EnemyDialogs.WinDialogs[Random.Range(0, EnemyDialogs.Names.Length)];
-            _winDialog = new Dialog(_name, winSentence);
+            var winSentence = EnemyDialogs.WinDialogs[Random.Range(0, EnemyDialogs.WinDialogs.Length)];
+            WinDialog = new Dialog(_name, winSentence);
             
-            var loseSentence = EnemyDialogs.LoseDialogs[Random.Range(0, EnemyDialogs.Names.Length)];
-            _loseDialog = new Dialog(_name, loseSentence);
+            var loseSentence = EnemyDialogs.LoseDialogs[Random.Range(0, EnemyDialogs.LoseDialogs.Length)];
+            LoseDialog = new Dialog(_name, loseSentence);
 
-            Level = Random.Range(playerLevel - 2, playerLevel + 2);
-            maxHealth = 10 * Level + 100;
-            Health = maxHealth;
+            Level = Mathf.Max(Random.Range(playerLevel - 2, playerLevel + 2), 1);
+            maxAnger = 10 * Level + 100;
+            Anger = maxAnger;
             Debug.Log($"Enemy Level: {Level}");
-            Debug.Log($"Enemy MaxHealth: {maxHealth}");
+            Debug.Log($"Enemy MaxAnger: {maxAnger}");
         }
 
         public int DealDamage()
@@ -47,9 +47,9 @@ namespace Character
         
         public void TakeDamage(int damage)
         {
-            Health -= damage;
+            Anger -= damage;
 
-            if (Health <= 0)
+            if (Anger <= 0)
             {
                 Debug.Log("LOL HE DED");
             }
