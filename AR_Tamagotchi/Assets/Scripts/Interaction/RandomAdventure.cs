@@ -92,14 +92,9 @@ namespace Interaction
             }
         }
 
-        public GemStone GetActiveGem()
+        public GameObject GetEnemyGameObject()
         {
-            return _gem;
-        }
-
-        public Enemy GetActiveEnemy()
-        {
-            return _enemy;
+            return _adventureObject;
         }
 
         private void SetAttentionMark()
@@ -215,6 +210,7 @@ namespace Interaction
         public void TickleEnemy()
         {
             State = AdventureState.IsTickling;
+            HideFightOptions();
         }
 
         public void EnemyReaction()
@@ -228,8 +224,7 @@ namespace Interaction
                 WinFight();
             }
         }
-
-        
+                
 
         public void EnemyAttack()
         {
@@ -300,6 +295,11 @@ namespace Interaction
             if (State != AdventureState.IsDone)
             {
                 return;
+            }
+
+            if (_adventureObject != null)
+            {
+                Destroy(_adventureObject);
             }
 
             var randomVegetation = GetRandomPrefab(Prefabs.VegetationPrefabs, Prefabs.VegetationDirectory);

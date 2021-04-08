@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using Utils;
 using Vuforia;
 
@@ -20,44 +19,24 @@ namespace Interaction
                 
         public void OnButtonPressed(VirtualButtonBehaviour vb)
         {
-            switch(RandomAdventure.State)
+            Debug.Log("Pressed");
+            if (RandomAdventure.State == AdventureState.IsTickling)
             {
-                case AdventureState.IsTickling:
-                    StartCoroutine(Constants.TickleEnemy);
-                    break;
-                case AdventureState.HasGem:
-                    RandomAdventure.UseGemStone();
-                    break;
+                RandomAdventure.EnemyReaction();
+            }
+            else if (RandomAdventure.State == AdventureState.HasGem)
+            {
+                RandomAdventure.UseGemStone();
             }
         }
 
         public void OnButtonReleased(VirtualButtonBehaviour vb)
         {
-            switch (RandomAdventure.State)
+            Debug.Log("released");
+            if (RandomAdventure.State == AdventureState.HasGem)
             {
-                case AdventureState.IsTickling:
-                    StopCoroutine(Constants.TickleEnemy);
-                    break;
-                case AdventureState.HasGem:
-                    RandomAdventure.UsedGemStone();
-                    break;
+                RandomAdventure.UsedGemStone();
             }
-        }
-
-        IEnumerable TickleEnemy()
-        {
-            while (true)
-            {
-                Debug.Log("tickle!!");
-                //show him laughing - decrease anger - but only for so long
-                yield return null;
-            }
-        }
-
-        public void StopLaughing()
-        {
-            //RandomAdventure.GetActiveEnemy().GetComponent<Animator>().SetTrigger(Constants.Laugh);
-
         }
     }
 }
