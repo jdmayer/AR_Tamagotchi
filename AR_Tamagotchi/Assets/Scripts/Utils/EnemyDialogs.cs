@@ -36,6 +36,9 @@ namespace Utils
         public const string WinDialog4 = "What's done is done.";
         public const string WinDialog5 = "Better think twice before looking behind bushes the next time.";
 
+        public const string PlayerWinInformation1 = "You won this fight! Violence does not pay off! ";
+        public const string PlayerWinInformation2 = "Look, the dragon left you something as thanks for calming him down!";
+
         public static readonly string[] WinDialogs = new string[] {
             WinDialog0,
             WinDialog1,
@@ -45,12 +48,14 @@ namespace Utils
             WinDialog5
         };
         
-        public const string LoseDialog0 = "Why do I always have to loose. I never seem to get it right.";
+        public const string LoseDialog0 = "Why do I always have to lose. I never seem to get it right.";
         public const string LoseDialog1 = "Disrespectful, that's what you are.";
         public const string LoseDialog2 = "Leave me alone.";
         public const string LoseDialog3 = "You are good. Have a nice day.";
         public const string LoseDialog4 = "You are good. Nearly too good I dare say.";
         public const string LoseDialog5 = "Ahhhrg.";
+
+        public const string PlayerLoseInformation = "You lost this fight. You will be sent back to home to recover. Have a nice day.";
 
         public static readonly string[] LoseDialogs = new string[] {
             LoseDialog0,

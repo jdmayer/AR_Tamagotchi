@@ -32,10 +32,10 @@ namespace Character
             StartDialog = new Dialog(_name, startSentence);
 
             var winSentence = EnemyDialogs.WinDialogs[Random.Range(0, EnemyDialogs.WinDialogs.Length)];
-            WinDialog = new Dialog(_name, winSentence);
+            WinDialog = new Dialog(_name, winSentence, EnemyDialogs.PlayerWinInformation2);
             
             var loseSentence = EnemyDialogs.LoseDialogs[Random.Range(0, EnemyDialogs.LoseDialogs.Length)];
-            LoseDialog = new Dialog(_name, loseSentence);
+            LoseDialog = new Dialog(_name, loseSentence, EnemyDialogs.PlayerWinInformation1, EnemyDialogs.PlayerWinInformation2);
 
             var laughSentence = EnemyDialogs.Laughs[Random.Range(0, EnemyDialogs.Laughs.Length)];
             LaughDialog = new Dialog(_name, laughSentence);

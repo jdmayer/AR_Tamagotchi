@@ -41,7 +41,6 @@ namespace Interaction
         private Enemy _enemy;
 
         public AdventureState State;
-        public bool IsActive;
 
         void Start()
         {
@@ -58,7 +57,6 @@ namespace Interaction
             _questionMark.SetActive(false);
             _vegetation = transform.Find(Prefabs.Vegetation).gameObject;
 
-            IsActive = false;
             State = AdventureState.IsInactive;
             _timer = new Timer(Canvas, TimerTextPrefab, RechargeTime);
 
@@ -72,22 +70,15 @@ namespace Interaction
                 _timer.UpdateTimer(_vegetation.transform);
                 return;
             }
-            else if (!IsActive)
+            else if (State == AdventureState.IsInactive)
             {
                 SetAttentionMark();
-            }
 
-            // TODO Remove for PROD
-            if (Input.GetKeyUp("t") && !IsActive)
-            {
-                Debug.Log("Discover adventure");
-                DiscoverAdventure();
-            }
-
-            if (Input.GetKeyUp("r") && IsActive)
-            {
-                Debug.Log("Reset adventure");
-                ResetAdventure();
+                if (Input.GetKeyUp("t"))
+                {
+                    Debug.Log("Discover adventure");
+                    DiscoverAdventure();
+                }
             }
         }
 
@@ -134,18 +125,18 @@ namespace Interaction
 
             if (Random.Range(0, 100) <= PossibilityOfGem)
             {
-                State = AdventureState.HasGem;
                 CreateRandomGem();
             }
             else
             {
-                State = AdventureState.IsFighting;
                 CreateRandomEnemy();
             }
         }
 
         private void CreateRandomGem()
         {
+            State = AdventureState.HasGem;
+
             var gemPrefab = GetRandomPrefab(Prefabs.GemPrefabs, Prefabs.GemDirectory);
             _adventureObject = Instantiate(gemPrefab, _vegetation.transform.position, _vegetation.transform.rotation, gameObject.transform);
             _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
@@ -155,6 +146,8 @@ namespace Interaction
 
         private void CreateRandomEnemy()
         {
+            State = AdventureState.IsFighting;
+
             var statusBarPrefab = Resources.Load(Prefabs.StatusBar) as GameObject;
             var statusBarPosition = Camera.main.WorldToScreenPoint(_vegetation.transform.position);
             GameObject enemyStats = Instantiate(statusBarPrefab, statusBarPosition, Quaternion.Euler(0, 0, 0), Canvas.transform);
@@ -224,25 +217,37 @@ namespace Interaction
 
         public void EnemyAttack()
         {
-            State = AdventureState.IsBeingAttacked; // TODO depend on strength!
+            State = AdventureState.IsBeingAttacked;
+            var damage = _enemy.DealDamage();
+            Player.Health -= damage;
+            //todo add animations
 
-            Debug.Log("enemy attacks");
+            if (Player.Health == 0)
+            {
+                LoseFight();
+            }
+            else
+            {
+                _dialogManager.StartDialog(new Dialog(Player.Name, "Ouch ..."), DisplayFightOptions);
+            }
         }
 
         public void WinFight()
         {
-            _dialogManager.StartDialog(_enemy.LoseDialog, CreateRandomGem);
+            State = AdventureState.IsDone;
             StopCoroutine("UpdateEnemyStatusBarPosition");
+            _dialogManager.StartDialog(_enemy.LoseDialog, CreateRandomGem);
             Destroy(_enemy.StatusBar.gameObject);
             Destroy(_adventureObject);
-            State = AdventureState.IsDone;
         }
 
         public void LoseFight()
         {
-            StopCoroutine("UpdateEnemyStatusBarPosition");
             State = AdventureState.IsDone;
+            StopCoroutine("UpdateEnemyStatusBarPosition");
             _dialogManager.StartDialog(_enemy.WinDialog, ReturnToMainScene);
+            Destroy(_enemy.StatusBar.gameObject);
+            Destroy(_adventureObject);
         }
 
         private void ReturnToMainScene()
@@ -266,12 +271,12 @@ namespace Interaction
 
         public void ResetAdventure()
         {
+            Debug.Log("reset!");
+            Debug.Log(State == AdventureState.IsDone);
             if (State != AdventureState.IsDone)
             {
                 return;
             }
-
-            //Destroy(_adventureObject);
 
             var randomVegetation = GetRandomPrefab(Prefabs.VegetationPrefabs, Prefabs.VegetationDirectory);
             if (randomVegetation == null)
@@ -288,8 +293,8 @@ namespace Interaction
                 _vegetation = newVegetation;
             }
 
-            IsActive = false;
             _timer.StartTimer(_vegetation.transform);
+            State = AdventureState.IsInactive;
         }
 
         IEnumerator UpdateEnemyStatusBarPosition()
