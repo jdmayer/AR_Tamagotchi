@@ -237,7 +237,6 @@ namespace Interaction
 
             _adventureObject.GetComponent<Animator>().SetTrigger(Constants.Attack);
             _fino.GetComponent<Animator>().SetTrigger(Constants.GetHit);
-            _fino.GetComponent<Animator>().SetTrigger(Constants.Dizzy);
 
             Player.Health = Player.Health - _enemy.DealDamage();
 
