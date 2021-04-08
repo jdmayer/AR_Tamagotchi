@@ -104,7 +104,7 @@ namespace Interaction
 
         private void SetAttentionMark()
         {
-            float actualDistance = Vector3.Distance(Player.gameObject.transform.position, transform.position);
+            float actualDistance = Vector3.Distance(_fino.transform.position, transform.position);
             if (actualDistance <= MinDistance)
             {
                 if (!_questionMark.activeSelf)
