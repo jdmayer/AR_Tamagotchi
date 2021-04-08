@@ -8,6 +8,9 @@ namespace Item
 {
     public class GemStone : MonoBehaviour
     {
+        public Dialog InformationDialog;
+        public Dialog UsedDialog;
+
         private GemType _gemType;
         private int _power;
 
@@ -15,6 +18,7 @@ namespace Item
         {
             _gemType = type;
             _power = Random.Range(1, 4) * 10;
+            SetGemDialogs();
         }
 
         public void UseGemStone(Character.Character player)
@@ -32,25 +36,30 @@ namespace Item
                     player.Energy += _power;
                     break;
             }
+        }
 
-            Debug.Log(_power);
-            Debug.Log("Use and destroy!");
-
-            _power = 0;
+        public void DestroyGemStone()
+        {
             Destroy(gameObject);
         }
 
-        public Dialog GetGemDialog()
+        private void SetGemDialogs()
         {
             switch(_gemType)
             {
                 case GemType.Health:
-                    return new Dialog("Health Stone", $"This stone gives you {_power} Health Points. Grab it!");
+                    InformationDialog = new Dialog("Health Stone", $"This stone gives you {_power} Health Points. Grab it!");
+                    UsedDialog = new Dialog("Health Stone", $"The health stone was destroyed after usage.");
+                    break;
                 case GemType.Experience:
-                    return new Dialog("Experience Stone", $"This stone gives you {_power} Experience Points. Grab it!");
+                    InformationDialog = new Dialog("Experience Stone", $"This stone gives you {_power} Experience Points. Grab it!");
+                    UsedDialog = new Dialog("Experience Stone", $"The experience stone was destroyed after usage.");
+                    break;
                 case GemType.Energy:
                 default:
-                    return new Dialog("Energy Stone", $"This stone gives you {_power} Energy Points. Grab it!");
+                    InformationDialog = new Dialog("Energy Stone", $"This stone gives you {_power} Energy Points. Grab it!");
+                    UsedDialog = new Dialog("Energy Stone", $"The energy stone was destroyed after usage.");
+                    break;
             }
         }
     }

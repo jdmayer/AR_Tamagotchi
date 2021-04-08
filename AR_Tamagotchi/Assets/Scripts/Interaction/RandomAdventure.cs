@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 using Vuforia;
+using static UI.DialogManager;
 
 /// <summary>
 /// Author: Janine Mayer
@@ -20,6 +21,9 @@ namespace Interaction
         public float RechargeTime = 60f;
         public float PossibilityOfGem = 30;
 
+        public Button TickleButton;
+        public Button JokeButton;
+
         public Text TimerTextPrefab;
         public Canvas Canvas;
         private Timer _timer;
@@ -30,29 +34,34 @@ namespace Interaction
         private GameObject _vegetation;
         private GameObject _adventureObject;
         private AudioSource _audioSource;
+        private DialogManager _dialogManager;
 
         private GemStone _gem;
         private Enemy _enemy;
 
-        public bool IsFighting;
+        public AdventureState State;
         public bool IsActive;
 
         void Start()
         {
             GetComponent<TrackableBehaviour>().RegisterTrackableEventHandler(this);
             _audioSource = GetComponent<AudioSource>();
+            _dialogManager = FindObjectOfType<DialogManager>();
 
             _fino = GameObject.Find("Fino/micro_dragon_fino_happy");
-            Debug.Log(_fino);
-            _exclamationMark = transform.Find(Prefabs.ExclamationMark).gameObject;
+
+            _exclamationMark = _fino.transform.Find(Prefabs.ExclamationMark).gameObject;
             _exclamationMark.SetActive(false);
+
             _questionMark = transform.Find(Prefabs.QuestionMark).gameObject;
             _questionMark.SetActive(false);
             _vegetation = transform.Find(Prefabs.Vegetation).gameObject;
 
             IsActive = false;
-            IsFighting = false;
+            State = AdventureState.IsInactive;
             _timer = new Timer(Canvas, TimerTextPrefab, RechargeTime);
+
+            HideFightOptions();
         }
 
         void Update()
@@ -81,6 +90,16 @@ namespace Interaction
             }
         }
 
+        public GemStone GetActiveGem()
+        {
+            return _gem;
+        }
+
+        public Enemy GetActiveEnemy()
+        {
+            return _enemy;
+        }
+
         private void SetAttentionMark()
         {
             float actualDistance = Vector3.Distance(Player.gameObject.transform.position, transform.position);
@@ -101,24 +120,26 @@ namespace Interaction
 
         public void DiscoverAdventure()
         {
-            if (IsActive)
+            if (State != AdventureState.IsInactive)
             {
                 return;
             }
 
-            IsActive = true;
+            State = AdventureState.IsActive;
 
+            _exclamationMark.SetActive(true);
             _questionMark.SetActive(false);
             _vegetation.SetActive(false);
 
             if (Random.Range(0, 100) <= PossibilityOfGem)
             {
+                State = AdventureState.HasGem;
                 CreateRandomGem();
             }
             else
             {
+                State = AdventureState.IsFighting;
                 CreateRandomEnemy();
-                //TODO - if win - randomgem, else - just reset everything
             }
         }
 
@@ -127,14 +148,12 @@ namespace Interaction
             var gemPrefab = GetRandomPrefab(Prefabs.GemPrefabs, Prefabs.GemDirectory);
             _adventureObject = Instantiate(gemPrefab, _vegetation.transform.position, _vegetation.transform.rotation, gameObject.transform);
             _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
-            Debug.Log(gemPrefab.name);
             _gem = new GemStone(GemUtil.GetGemTypeByName(gemPrefab.name));
-            TriggerDialog(_gem.GetGemDialog());
+            _dialogManager.StartDialog(_gem.InformationDialog, HideExclamationMark);
         }
 
         private void CreateRandomEnemy()
         {
-            IsFighting = true;
             var statusBarPrefab = Resources.Load(Prefabs.StatusBar) as GameObject;
             var statusBarPosition = Camera.main.WorldToScreenPoint(_vegetation.transform.position);
             GameObject enemyStats = Instantiate(statusBarPrefab, statusBarPosition, Quaternion.Euler(0, 0, 0), Canvas.transform);
@@ -144,21 +163,12 @@ namespace Interaction
             var newRotation = Quaternion.LookRotation(_fino.transform.position) * Quaternion.AngleAxis(90, transform.up);
             _adventureObject = Instantiate(dragonPrefab, _vegetation.transform.position, newRotation, gameObject.transform);
             _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
+            _adventureObject.AddComponent<Animator>();
             Handheld.Vibrate();
 
             _enemy = new Enemy(Player.Level, bar);
             StartCoroutine("UpdateEnemyStatusBarPosition");
-            TriggerDialog(_enemy.StartDialog);
-        }
-
-        public GemStone GetActiveGem()
-        {
-            return _gem;
-        }
-
-        public Enemy GetActiveEnemy()
-        {
-            return _enemy;
+            _dialogManager.StartDialog(_enemy.StartDialog, DisplayFightOptions);
         }
 
         private GameObject GetRandomPrefab(string[] objects, string directory)
@@ -168,9 +178,45 @@ namespace Interaction
             return Resources.Load(randomPrefabName) as GameObject;
         }
 
+        public void DisplayFightOptions()
+        {
+            HideExclamationMark();
+            TickleButton.gameObject.SetActive(true);
+            JokeButton.gameObject.SetActive(true);
+        }
+        
+        public void HideFightOptions()
+        {
+            TickleButton.gameObject.SetActive(false);
+            JokeButton.gameObject.SetActive(false);       
+        }
+
+        public void HideExclamationMark()
+        {
+            _exclamationMark.SetActive(false);
+        }
+
+        public void TellAJoke()
+        {
+            State = AdventureState.IsJoking;
+            HideFightOptions();
+            var joke = new Dialog(Player.Name, Jokes.GetRandomJoke());
+            _dialogManager.StartDialog(joke, EnemyReaction);
+        }
+
+        public void TickleEnemy()
+        {
+            State = AdventureState.IsTickling;
+        }
+
+        public void EnemyReaction()
+        {
+            Debug.Log("laugh!");
+            State = AdventureState.IsBeingAttacked; // TODO depend on strength!
+        }
+
         public void WinFight()
         {
-            IsFighting = false;
             TriggerDialog(_enemy.LoseDialog);
             StopCoroutine("UpdateEnemyStatusBarPosition");
             //TODO on continue:
@@ -179,25 +225,37 @@ namespace Interaction
             //Destroy(_adventureObject);
 
             //CreateRandomGem();
+            //reset everything!
+            State = AdventureState.IsDone;
         }
 
         public void LoseFight()
         {
-            IsFighting = false;
             TriggerDialog(_enemy.WinDialog);
             StopCoroutine("UpdateEnemyStatusBarPosition");
             //TODO - Add Dialog and go back to 
+            State = AdventureState.IsDone;
         }
 
         public void UseGemStone()
         {
             _gem.UseGemStone(Player);
+        }
 
+        public void UsedGemStone()
+        {
+            State = AdventureState.IsDone;
+            _dialogManager.StartDialog(_gem.UsedDialog, ResetAdventure);
         }
 
         //should only be able when fight is lost/won and no gem is there anymore
         public void ResetAdventure()
         {
+            if (State != AdventureState.IsDone)
+            {
+                return;
+            }
+
             //Destroy(_adventureObject);
 
             var randomVegetation = GetRandomPrefab(Prefabs.VegetationPrefabs, Prefabs.VegetationDirectory);

@@ -20,24 +20,27 @@ namespace Interaction
                 
         public void OnButtonPressed(VirtualButtonBehaviour vb)
         {
-            if (RandomAdventure.IsActive)
+            switch(RandomAdventure.State)
             {
-                if (RandomAdventure.IsFighting)
-                {
+                case AdventureState.IsTickling:
                     StartCoroutine(Constants.TickleEnemy);
-                }
-                else
-                {
+                    break;
+                case AdventureState.HasGem:
                     RandomAdventure.UseGemStone();
-                }
+                    break;
             }
         }
 
         public void OnButtonReleased(VirtualButtonBehaviour vb)
         {
-            if (RandomAdventure.IsActive)
+            switch (RandomAdventure.State)
             {
-                StopCoroutine(Constants.TickleEnemy);
+                case AdventureState.IsTickling:
+                    StopCoroutine(Constants.TickleEnemy);
+                    break;
+                case AdventureState.HasGem:
+                    RandomAdventure.UsedGemStone();
+                    break;
             }
         }
 
@@ -49,6 +52,12 @@ namespace Interaction
                 //show him laughing - decrease anger - but only for so long
                 yield return null;
             }
+        }
+
+        public void StopLaughing()
+        {
+            //RandomAdventure.GetActiveEnemy().GetComponent<Animator>().SetTrigger(Constants.Laugh);
+
         }
     }
 }

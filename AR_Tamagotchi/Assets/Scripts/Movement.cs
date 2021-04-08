@@ -33,38 +33,6 @@ namespace Monobehaviours
                 _audioSource.PlayOneShot(jumpSound, 1);
             }
 
-            //if (Input.GetKeyUp("t"))
-            //{
-            //    Debug.Log(originalPosition);
-
-            //    Debug.Log("move back to target! teleport!!");
-            //    //transform.position = originalPosition;
-            //    //Debug.Log(originalPosition);
-            //    //var test = (transform.position - originalPosition).normalized;
-            //    //Debug.Log(test);
-
-            //    //transform.position +=  test * 0.1f * Time.deltaTime;
-            //    isMovingBack = true;
-
-
-            //}
-
-            //if (Input.GetKeyUp("c"))
-            //{
-            //    transform.position += (transform.position - originalPosition).normalized * 1f * Time.deltaTime;
-            //    //test.text = originalPosition.ToString() + " " + transform.position.ToString();
-            //    //isMovingBack = false;
-
-            //}
-
-            // behave according to current state:
-            //if (isMovingBack)
-            //{
-            //    test.text = transform.position.ToString();
-
-            //    transform.position += (transform.position - originalPosition).normalized * 1f * Time.deltaTime;
-            //}
-
             var xDirection = Input.GetAxis(Constants.Horizontal);
             var zDirection = Input.GetAxis(Constants.Vertical);
             Vector3 moveDirection = new Vector3(xDirection, 0.0f, zDirection);
@@ -83,7 +51,5 @@ namespace Monobehaviours
                 _audioSource.Stop();
             }
         }
-
-        //do not let move too far from marker
     }
 }

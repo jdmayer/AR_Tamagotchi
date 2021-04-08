@@ -16,13 +16,19 @@ namespace UI
         public Animator Animator;
 
         private Queue<string> _sentences;
+        private DialogCompletedCallBack _callBack;
+
+        public delegate void DialogCompletedCallBack();
+
         void Start()
         {
             _sentences = new Queue<string>();
         }
 
-        public void StartDialog(Dialog dialog)
+        public void StartDialog(Dialog dialog, DialogCompletedCallBack callBack = null)
         {
+            _callBack = callBack;
+
             Animator.SetBool(Constants.IsOpen, true);
             _sentences.Clear();
 
@@ -50,6 +56,12 @@ namespace UI
         public void QuitDialog()
         {
             Animator.SetBool(Constants.IsOpen, false);
+
+            if (_callBack != null)
+            {
+                Debug.Log("do callback!!");
+                _callBack();
+            }
         }
 
         IEnumerator TypeSentence(string sentence)

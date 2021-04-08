@@ -12,6 +12,8 @@ namespace Character
 {
     public class Character : CharacterBasic
     {
+        public string Name;
+
         private int _experiencePoints;
         private int _maxExperiencePoints;
         public int ExperiencePoints {
@@ -137,6 +139,7 @@ namespace Character
         {
             ExperiencePoints = PlayerPrefs.GetInt(PlayerPref.ExperiencePoints, 0);
             Energy = Convert.ToInt32(PlayerPrefs.GetFloat(PlayerPref.Energy, 100f));
+            Name = PlayerPrefs.GetString(PlayerPref.Name);
         }
 
         public override void SetPlayerPrefs()
