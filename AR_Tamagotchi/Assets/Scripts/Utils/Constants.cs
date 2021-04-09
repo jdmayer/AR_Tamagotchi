@@ -35,5 +35,9 @@ namespace Utils
         public const string Value = "Value";
         public const string MaxValue = "MaxValue";
         public const string Vegetation = "Vegetation";
+
+        //Sounds 
+        public const string LaughSound = "Sounds/Laugh";
+        public const string GemSound = "Sounds/CrystalSound";
     }
 }

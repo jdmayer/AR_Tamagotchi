@@ -106,6 +106,20 @@ namespace Interaction
                     _questionMark.SetActive(true);
                 }
 
+                if ((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Began))
+                {
+                    Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+                    RaycastHit hit;
+
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        if (hit.collider.name == Constants.Vegetation)
+                        {
+                            DiscoverAdventure();
+                        }
+                    }
+                }
+
                 if (Input.GetKeyUp("t"))
                 {
                     DiscoverAdventure();
@@ -150,9 +164,12 @@ namespace Interaction
             var gemPrefab = GetRandomPrefab(Prefabs.GemPrefabs, Prefabs.GemDirectory);
             _adventureObject = Instantiate(gemPrefab, _vegetation.transform.position, _vegetation.transform.rotation, gameObject.transform);
             _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
+
+            var gemSound = Resources.Load<AudioClip>(Constants.GemSound);
+            _adventureObject.AddComponent<AudioSource>().PlayOneShot(gemSound);
+
             _gem = new GemStone(GemUtil.GetGemTypeByName(gemPrefab.name));
-            Debug.Log("startup");
-            Debug.Log(_gem);
+            
             _dialogManager.StartDialog(_gem.InformationDialog, HideExclamationMark);
         }
 
@@ -173,6 +190,7 @@ namespace Interaction
             var entityController = Resources.Load(Constants.EntityControllerPath) as RuntimeAnimatorController;
             _adventureObject.GetComponent<Animator>().runtimeAnimatorController = entityController;
 
+            _adventureObject.AddComponent<AudioSource>();
             Handheld.Vibrate();
 
             _enemy = new Enemy(Player.Level, bar, _enemyStats);
@@ -224,6 +242,8 @@ namespace Interaction
         public void EnemyReaction()
         {
             _dialogManager.StartDialog(_enemy.LaughDialog, EnemyAttack);
+            var laughSound = Resources.Load<AudioClip>(Constants.LaughSound);
+            _adventureObject.GetComponent<AudioSource>().PlayOneShot(laughSound);
             _adventureObject.gameObject.GetComponent<Animator>().SetTrigger(Constants.Laugh);
             _enemy.TakeDamage();
 
@@ -330,6 +350,7 @@ namespace Interaction
                 GameObject newVegetation = Instantiate(randomVegetation,
                     _vegetation.transform.position, _vegetation.transform.rotation, gameObject.transform);
                 newVegetation.transform.localScale = _vegetation.transform.localScale;
+                newVegetation.AddComponent<BoxCollider>();
 
                 Destroy(_vegetation);
                 _vegetation = newVegetation;
