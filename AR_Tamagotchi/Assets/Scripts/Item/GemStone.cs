@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 namespace Item
 {
-    public class GemStone : MonoBehaviour
+    public class GemStone
     {
         public Dialog InformationDialog;
         public Dialog UsedDialog;
@@ -36,11 +36,6 @@ namespace Item
                     player.Energy += _power;
                     break;
             }
-        }
-
-        public void DestroyGemStone()
-        {
-            Destroy(gameObject);
         }
 
         private void SetGemDialogs()

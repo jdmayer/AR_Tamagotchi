@@ -38,6 +38,7 @@ namespace Interaction
 
         private GemStone _gem;
         private Enemy _enemy;
+        private GameObject _enemyStats;
 
         public AdventureState State;
 
@@ -150,6 +151,8 @@ namespace Interaction
             _adventureObject = Instantiate(gemPrefab, _vegetation.transform.position, _vegetation.transform.rotation, gameObject.transform);
             _adventureObject.transform.localScale = new Vector3(1f, 1f, 1f);
             _gem = new GemStone(GemUtil.GetGemTypeByName(gemPrefab.name));
+            Debug.Log("startup");
+            Debug.Log(_gem);
             _dialogManager.StartDialog(_gem.InformationDialog, HideExclamationMark);
         }
 
@@ -159,8 +162,8 @@ namespace Interaction
 
             var statusBarPrefab = Resources.Load(Prefabs.StatusBar) as GameObject;
             var statusBarPosition = Camera.main.WorldToScreenPoint(_vegetation.transform.position) + new Vector3(0, 0.5f);
-            GameObject enemyStats = Instantiate(statusBarPrefab, statusBarPosition, Quaternion.Euler(0, 0, 0), Canvas.transform);
-            StatusBar bar = enemyStats.transform.GetChild(0).GetComponent<StatusBar>();
+            _enemyStats = Instantiate(statusBarPrefab, statusBarPosition, Quaternion.Euler(0, 0, 0), Canvas.transform);
+            StatusBar bar = _enemyStats.transform.GetChild(0).GetComponent<StatusBar>();
 
             var dragonPrefab = Resources.Load(Prefabs.DragonDirectory + Prefabs.DragonNeutral) as GameObject;
             _adventureObject = Instantiate(dragonPrefab, _vegetation.transform.position, _fino.transform.rotation, gameObject.transform);
@@ -172,7 +175,7 @@ namespace Interaction
 
             Handheld.Vibrate();
 
-            _enemy = new Enemy(Player.Level, bar);
+            _enemy = new Enemy(Player.Level, bar, _enemyStats);
             StartCoroutine("UpdateEnemyStatusBarPosition");
             _dialogManager.StartDialog(_enemy.StartDialog, DisplayFightOptions);
         }
@@ -208,12 +211,14 @@ namespace Interaction
             HideFightOptions();
             var joke = new Dialog(Player.Name, Jokes.GetRandomJoke());
             _dialogManager.StartDialog(joke, EnemyReaction);
+            Player.UseAttack();
         }
 
         public void TickleEnemy()
         {
             State = AdventureState.IsTickling;
             HideFightOptions();
+            Player.UseAttack();
         }
 
         public void EnemyReaction()
@@ -228,7 +233,6 @@ namespace Interaction
             }
         }
                 
-
         public void EnemyAttack()
         {
             State = AdventureState.IsBeingAttacked;
@@ -251,7 +255,14 @@ namespace Interaction
         public void EndEnemyAttack()
         {
             StopCoroutine("DisplayAttackAnimation");
-            DisplayFightOptions();
+            if (Player.Energy > 0)
+            {
+                DisplayFightOptions();
+            }
+            else
+            {
+                _dialogManager.StartDialog(new Dialog(Player.Name, "I don't have enough energy for this fight."), EnemyAttack);
+            }
         }
 
         public void WinFight()
@@ -261,9 +272,8 @@ namespace Interaction
             _dialogManager.StartDialog(_enemy.LoseDialog, CreateRandomGem);
             Player.ExperiencePoints += _enemy.Level * 10;
 
-            Destroy(_enemy.StatusBar.gameObject);
+            Destroy(_enemyStats);
             Destroy(_adventureObject);
-
         }
 
         public void LoseFight()
@@ -272,7 +282,7 @@ namespace Interaction
             StopCoroutine("UpdateEnemyStatusBarPosition");
             _dialogManager.StartDialog(_enemy.WinDialog, ReturnToMainScene);
 
-            Destroy(_enemy.StatusBar.gameObject);
+            Destroy(_enemyStats);
             Destroy(_adventureObject);
         }
 
@@ -286,7 +296,7 @@ namespace Interaction
         public void UseGemStone()
         {
             _gem.UseGemStone(Player);
-            _gem.gameObject.SetActive(false);
+            Destroy(_adventureObject);
         }
 
         public void UsedGemStone()

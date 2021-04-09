@@ -25,7 +25,7 @@ namespace Character
 
         public StatusBar StatusBar;
 
-        public Enemy(int playerLevel, StatusBar statusBar)
+        public Enemy(int playerLevel, StatusBar statusBar, GameObject statusGameObject)
         {
             _name = EnemyDialogs.Names[Random.Range(0, EnemyDialogs.Names.Length)];
             var startSentence = EnemyDialogs.Dialogs[Random.Range(0, EnemyDialogs.Names.Length)];
@@ -49,7 +49,9 @@ namespace Character
 
             StatusBar = statusBar;
             StatusBar.SetMaxValue(_maxAnger, _maxAnger);
-            //TODO set level and text!
+
+            var statusLabel = statusGameObject.gameObject.transform.Find("Text").GetComponent<Text>();
+            statusLabel.text = $"Level {Level}";
         }
 
         public int DealDamage()

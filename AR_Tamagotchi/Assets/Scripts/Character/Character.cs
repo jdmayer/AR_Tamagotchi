@@ -23,6 +23,7 @@ namespace Character
             }
             set
             {
+                Debug.Log("Experience " + value);
                 _experiencePoints = value;
                 SetLevel();
                 SetMaxHealth();
@@ -121,6 +122,11 @@ namespace Character
         public void StopAdventure()
         {
             StartCoroutine(Constants.UpdateStatus);
+        }
+
+        public void UseAttack()
+        {
+            Energy -= (int) (_maxHealth * 0.1);
         }
 
         IEnumerator UpdateStatus()
