@@ -34,5 +34,6 @@ namespace Utils
         //GameObject names
         public const string Value = "Value";
         public const string MaxValue = "MaxValue";
+        public const string Vegetation = "Vegetation";
     }
 }

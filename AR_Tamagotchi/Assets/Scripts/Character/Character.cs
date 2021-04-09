@@ -138,7 +138,7 @@ namespace Character
                 if (_timeLeftUntilRecharge < 0)
                 {
                     Health += Health < _maxHealth ? 2 : 0;
-                    Energy -= Energy > 0 ? 2 : 0;
+                    Energy += Energy < MaxEnergy? 2 : 0;
                     _timeLeftUntilRecharge = RechargeTime;
                 }
 
