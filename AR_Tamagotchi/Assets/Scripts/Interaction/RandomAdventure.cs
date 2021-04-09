@@ -107,7 +107,6 @@ namespace Interaction
 
                 if (Input.GetKeyUp("t"))
                 {
-                    Debug.Log("Discover adventure");
                     DiscoverAdventure();
                 }
             }
@@ -234,7 +233,7 @@ namespace Interaction
         {
             State = AdventureState.IsBeingAttacked;
 
-            _adventureObject.GetComponent<Animator>().SetTrigger(Constants.Attack);
+            //_adventureObject.GetComponent<Animator>().SetTrigger(Constants.Attack);
             _fino.GetComponent<Animator>().SetTrigger(Constants.GetHit);
 
             Player.Health = Player.Health - _enemy.DealDamage();
@@ -281,13 +280,13 @@ namespace Interaction
         {
             ResetAdventure();
             Player.SetPlayerPrefs();
-            Debug.Log("You kinda lost.");
             SceneManager.LoadScene(Constants.SceneMain);
         }
 
         public void UseGemStone()
         {
             _gem.UseGemStone(Player);
+            _gem.gameObject.SetActive(false);
         }
 
         public void UsedGemStone()
@@ -298,7 +297,6 @@ namespace Interaction
 
         public void ResetAdventure()
         {
-            Debug.Log("reset!");
             Debug.Log(State == AdventureState.IsDone);
             if (State != AdventureState.IsDone)
             {

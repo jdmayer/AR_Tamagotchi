@@ -65,11 +65,6 @@ namespace Character
             Anger -= Random.Range(10, maxDamage);
             Anger = Mathf.Max(0, Anger);
             StatusBar.SetValue(Anger);
-
-            if (Anger <= 0)
-            {
-                Debug.Log("LOL HE DED");
-            }
         }
 
         public void UpdateStatPosition(Transform parent)

@@ -19,7 +19,6 @@ namespace Interaction
                 
         public void OnButtonPressed(VirtualButtonBehaviour vb)
         {
-            Debug.Log("Pressed");
             if (RandomAdventure.State == AdventureState.IsTickling)
             {
                 RandomAdventure.EnemyReaction();
@@ -32,7 +31,6 @@ namespace Interaction
 
         public void OnButtonReleased(VirtualButtonBehaviour vb)
         {
-            Debug.Log("released");
             if (RandomAdventure.State == AdventureState.HasGem)
             {
                 RandomAdventure.UsedGemStone();

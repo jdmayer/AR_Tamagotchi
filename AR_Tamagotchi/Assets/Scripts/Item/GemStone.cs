@@ -23,7 +23,6 @@ namespace Item
 
         public void UseGemStone(Character.Character player)
         {
-            Debug.Log("Use Gem");
             switch (_gemType)
             {
                 case GemType.Health:

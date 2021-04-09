@@ -318,6 +318,7 @@ Assets\Scripts\StartPage.cs
 Assets\Scripts\SwitchScene.cs
 Assets\Scripts\UI\Dialog.cs
 Assets\Scripts\UI\DialogManager.cs
+Assets\Scripts\UI\MarkRotation.cs
 Assets\Scripts\UI\StatusBar.cs
 Assets\Scripts\UI\Timer.cs
 Assets\Scripts\Utils\Constants.cs

@@ -71,10 +71,6 @@ namespace Character
         private float _timeLeftUntilRecharge = 0.0f;
         public float RechargeTime = 4.0f;
 
-        public bool IsInFight = false;
-
-        public Text statsText;
-
         public Character()
         {
             _maxHealth = 100;
