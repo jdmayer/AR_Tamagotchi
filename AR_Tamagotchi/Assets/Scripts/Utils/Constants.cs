@@ -39,5 +39,6 @@ namespace Utils
         //Sounds 
         public const string LaughSound = "Sounds/Laugh";
         public const string GemSound = "Sounds/CrystalSound";
+        public const string OofSound = "Sounds/Oof";
     }
 }

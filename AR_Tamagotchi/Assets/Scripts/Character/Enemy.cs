@@ -32,7 +32,7 @@ namespace Character
             StartDialog = new Dialog(_name, startSentence);
 
             var winSentence = EnemyDialogs.WinDialogs[Random.Range(0, EnemyDialogs.WinDialogs.Length)];
-            WinDialog = new Dialog(_name, winSentence, EnemyDialogs.PlayerWinInformation2);
+            WinDialog = new Dialog(_name, winSentence, EnemyDialogs.PlayerLoseInformation);
             
             var loseSentence = EnemyDialogs.LoseDialogs[Random.Range(0, EnemyDialogs.LoseDialogs.Length)];
             LoseDialog = new Dialog(_name, loseSentence, EnemyDialogs.PlayerWinInformation1, EnemyDialogs.PlayerWinInformation2);
@@ -67,11 +67,6 @@ namespace Character
             Anger -= Random.Range(10, maxDamage);
             Anger = Mathf.Max(0, Anger);
             StatusBar.SetValue(Anger);
-        }
-
-        public void UpdateStatPosition(Transform parent)
-        {
-            StatusBar.gameObject.transform.position = Camera.main.WorldToScreenPoint(parent.position); 
         }
     }
 }

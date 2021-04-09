@@ -257,8 +257,9 @@ namespace Interaction
         {
             State = AdventureState.IsBeingAttacked;
 
-            //_adventureObject.GetComponent<Animator>().SetTrigger(Constants.Attack);
             _fino.GetComponent<Animator>().SetTrigger(Constants.GetHit);
+            var oofSound = Resources.Load<AudioClip>(Constants.OofSound);
+            _fino.GetComponent<AudioSource>().PlayOneShot(oofSound);
 
             Player.Health = Player.Health - _enemy.DealDamage();
 
@@ -364,7 +365,7 @@ namespace Interaction
         {
             while (true)
             {
-                _enemy.UpdateStatPosition(this.transform);
+                _enemyStats.transform.position = Camera.main.WorldToScreenPoint(transform.position);
                 yield return null;
             }
         }
