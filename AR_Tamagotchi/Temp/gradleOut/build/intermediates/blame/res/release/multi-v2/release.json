@@ -133,28 +133,6 @@
             ]
         },
         {
-            "outputFile": "C:\\Unity\\AR_Tamagotchi\\AR_Tamagotchi\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\values-th_values-th.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Janine Mayer\\.gradle\\caches\\transforms-2\\files-2.1\\5e7223d78ed0a09b804783f99b80599f\\res\\values-th\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8",
-                        "startColumns": "0,0,0,0,0",
-                        "startOffsets": "190,237,285,374,463",
-                        "endColumns": "46,47,88,88,64",
-                        "endOffsets": "236,284,373,462,527"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6",
-                        "startColumns": "4,4,4,4,4",
-                        "startOffsets": "55,106,158,251,344",
-                        "endColumns": "50,51,92,92,68",
-                        "endOffsets": "101,153,246,339,408"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "C:\\Unity\\AR_Tamagotchi\\AR_Tamagotchi\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\values-uz_values-uz.arsc.flat",
             "map": [
                 {
@@ -172,6 +150,28 @@
                         "startOffsets": "55,112,170,289,416",
                         "endColumns": "56,57,118,126,69",
                         "endOffsets": "107,165,284,411,481"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Unity\\AR_Tamagotchi\\AR_Tamagotchi\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\values-th_values-th.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Janine Mayer\\.gradle\\caches\\transforms-2\\files-2.1\\5e7223d78ed0a09b804783f99b80599f\\res\\values-th\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8",
+                        "startColumns": "0,0,0,0,0",
+                        "startOffsets": "190,237,285,374,463",
+                        "endColumns": "46,47,88,88,64",
+                        "endOffsets": "236,284,373,462,527"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,106,158,251,344",
+                        "endColumns": "50,51,92,92,68",
+                        "endOffsets": "101,153,246,339,408"
                     }
                 }
             ]
@@ -243,23 +243,23 @@
             ]
         },
         {
-            "outputFile": "C:\\Unity\\AR_Tamagotchi\\AR_Tamagotchi\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\values-ja_values-ja.arsc.flat",
+            "outputFile": "C:\\Unity\\AR_Tamagotchi\\AR_Tamagotchi\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\values-nb_values-nb.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\Janine Mayer\\.gradle\\caches\\transforms-2\\files-2.1\\5e7223d78ed0a09b804783f99b80599f\\res\\values-ja\\values.xml",
+                    "source": "C:\\Users\\Janine Mayer\\.gradle\\caches\\transforms-2\\files-2.1\\5e7223d78ed0a09b804783f99b80599f\\res\\values-nb\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8",
                         "startColumns": "0,0,0,0,0",
-                        "startOffsets": "190,236,281,361,444",
-                        "endColumns": "45,44,79,82,64",
-                        "endOffsets": "235,280,360,443,508"
+                        "startOffsets": "190,237,288,384,489",
+                        "endColumns": "46,50,95,104,64",
+                        "endOffsets": "236,287,383,488,553"
                     },
                     "to": {
                         "startLines": "2,3,4,5,6",
                         "startColumns": "4,4,4,4,4",
-                        "startOffsets": "55,105,154,238,325",
-                        "endColumns": "49,48,83,86,68",
-                        "endOffsets": "100,149,233,320,389"
+                        "startOffsets": "55,106,161,261,370",
+                        "endColumns": "50,54,99,108,68",
+                        "endOffsets": "101,156,256,365,434"
                     }
                 }
             ]
@@ -287,23 +287,23 @@
             ]
         },
         {
-            "outputFile": "C:\\Unity\\AR_Tamagotchi\\AR_Tamagotchi\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\values-nb_values-nb.arsc.flat",
+            "outputFile": "C:\\Unity\\AR_Tamagotchi\\AR_Tamagotchi\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\values-ja_values-ja.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\Janine Mayer\\.gradle\\caches\\transforms-2\\files-2.1\\5e7223d78ed0a09b804783f99b80599f\\res\\values-nb\\values.xml",
+                    "source": "C:\\Users\\Janine Mayer\\.gradle\\caches\\transforms-2\\files-2.1\\5e7223d78ed0a09b804783f99b80599f\\res\\values-ja\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8",
                         "startColumns": "0,0,0,0,0",
-                        "startOffsets": "190,237,288,384,489",
-                        "endColumns": "46,50,95,104,64",
-                        "endOffsets": "236,287,383,488,553"
+                        "startOffsets": "190,236,281,361,444",
+                        "endColumns": "45,44,79,82,64",
+                        "endOffsets": "235,280,360,443,508"
                     },
                     "to": {
                         "startLines": "2,3,4,5,6",
                         "startColumns": "4,4,4,4,4",
-                        "startOffsets": "55,106,161,261,370",
-                        "endColumns": "50,54,99,108,68",
-                        "endOffsets": "101,156,256,365,434"
+                        "startOffsets": "55,105,154,238,325",
+                        "endColumns": "49,48,83,86,68",
+                        "endOffsets": "100,149,233,320,389"
                     }
                 }
             ]
@@ -446,11 +446,9 @@
                 {
                     "source": "C:\\Users\\Janine Mayer\\.gradle\\caches\\transforms-2\\files-2.1\\5e7223d78ed0a09b804783f99b80599f\\res\\values\\values.xml",
                     "from": {
-                        "startLines": "4,5,6,7,8",
-                        "startColumns": "0,0,0,0,0",
-                        "startOffsets": "161,208,259,360,461",
-                        "endColumns": "46,50,100,100,62",
-                        "endOffsets": "207,258,359,460,523"
+                        "startLines": "-1,-1,-1,-1,-1",
+                        "startColumns": "-1,-1,-1,-1,-1",
+                        "startOffsets": "-1,-1,-1,-1,-1"
                     },
                     "to": {
                         "startLines": "2,3,4,5,6",
@@ -463,37 +461,34 @@
                 {
                     "source": "C:\\Unity\\AR_Tamagotchi\\AR_Tamagotchi\\Temp\\gradleOut\\src\\main\\res\\values\\strings.xml",
                     "from": {
-                        "startLines": "2,3",
-                        "startColumns": "2,2",
-                        "startOffsets": "55,105",
-                        "endColumns": "48,65",
-                        "endOffsets": "101,168"
+                        "startLines": "2,-1",
+                        "startColumns": "2,-1",
+                        "startOffsets": "55,-1",
+                        "endColumns": "51,-1",
+                        "endOffsets": "104,-1"
                     },
                     "to": {
                         "startLines": "7,8",
                         "startColumns": "4,4",
-                        "startOffsets": "438,489",
-                        "endColumns": "50,67",
-                        "endOffsets": "484,552"
+                        "startOffsets": "438,492",
+                        "endColumns": "53,67",
+                        "endOffsets": "487,555"
                     }
                 },
                 {
                     "source": "C:\\Unity\\AR_Tamagotchi\\AR_Tamagotchi\\Temp\\gradleOut\\src\\main\\res\\values\\styles.xml",
                     "from": {
-                        "startLines": "5,2,7",
-                        "startColumns": "0,0,0",
-                        "startOffsets": "190,53,288",
-                        "endLines": "6,4,10",
-                        "endColumns": "8,8,8",
-                        "endOffsets": "286,188,513"
+                        "startLines": "-1,-1,-1",
+                        "startColumns": "-1,-1,-1",
+                        "startOffsets": "-1,-1,-1"
                     },
                     "to": {
                         "startLines": "9,11,14",
                         "startColumns": "4,4,4",
-                        "startOffsets": "557,657,795",
+                        "startOffsets": "560,660,798",
                         "endLines": "10,13,17",
                         "endColumns": "8,8,8",
-                        "endOffsets": "652,790,1017"
+                        "endOffsets": "655,793,1020"
                     }
                 }
             ]
@@ -697,23 +692,23 @@
             ]
         },
         {
-            "outputFile": "C:\\Unity\\AR_Tamagotchi\\AR_Tamagotchi\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\values-bn_values-bn.arsc.flat",
+            "outputFile": "C:\\Unity\\AR_Tamagotchi\\AR_Tamagotchi\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\values-da_values-da.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\Janine Mayer\\.gradle\\caches\\transforms-2\\files-2.1\\5e7223d78ed0a09b804783f99b80599f\\res\\values-bn\\values.xml",
+                    "source": "C:\\Users\\Janine Mayer\\.gradle\\caches\\transforms-2\\files-2.1\\5e7223d78ed0a09b804783f99b80599f\\res\\values-da\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8",
                         "startColumns": "0,0,0,0,0",
-                        "startOffsets": "190,241,293,403,519",
-                        "endColumns": "50,51,109,115,64",
-                        "endOffsets": "240,292,402,518,583"
+                        "startOffsets": "190,239,289,381,482",
+                        "endColumns": "48,49,91,100,63",
+                        "endOffsets": "238,288,380,481,545"
                     },
                     "to": {
                         "startLines": "2,3,4,5,6",
                         "startColumns": "4,4,4,4,4",
-                        "startOffsets": "55,110,166,280,400",
-                        "endColumns": "54,55,113,119,68",
-                        "endOffsets": "105,161,275,395,464"
+                        "startOffsets": "55,108,162,258,363",
+                        "endColumns": "52,53,95,104,67",
+                        "endOffsets": "103,157,253,358,426"
                     }
                 }
             ]
@@ -741,23 +736,23 @@
             ]
         },
         {
-            "outputFile": "C:\\Unity\\AR_Tamagotchi\\AR_Tamagotchi\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\values-da_values-da.arsc.flat",
+            "outputFile": "C:\\Unity\\AR_Tamagotchi\\AR_Tamagotchi\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\values-bn_values-bn.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\Janine Mayer\\.gradle\\caches\\transforms-2\\files-2.1\\5e7223d78ed0a09b804783f99b80599f\\res\\values-da\\values.xml",
+                    "source": "C:\\Users\\Janine Mayer\\.gradle\\caches\\transforms-2\\files-2.1\\5e7223d78ed0a09b804783f99b80599f\\res\\values-bn\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8",
                         "startColumns": "0,0,0,0,0",
-                        "startOffsets": "190,239,289,381,482",
-                        "endColumns": "48,49,91,100,63",
-                        "endOffsets": "238,288,380,481,545"
+                        "startOffsets": "190,241,293,403,519",
+                        "endColumns": "50,51,109,115,64",
+                        "endOffsets": "240,292,402,518,583"
                     },
                     "to": {
                         "startLines": "2,3,4,5,6",
                         "startColumns": "4,4,4,4,4",
-                        "startOffsets": "55,108,162,258,363",
-                        "endColumns": "52,53,95,104,67",
-                        "endOffsets": "103,157,253,358,426"
+                        "startOffsets": "55,110,166,280,400",
+                        "endColumns": "54,55,113,119,68",
+                        "endOffsets": "105,161,275,395,464"
                     }
                 }
             ]

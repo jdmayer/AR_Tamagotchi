@@ -42,7 +42,7 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 30
-        applicationId 'com.DefaultCompany.ARTamagotchi'
+        applicationId 'com.DefaultCompany.TheFinoProject'
         ndk {
             abiFilters 'armeabi-v7a'
         }

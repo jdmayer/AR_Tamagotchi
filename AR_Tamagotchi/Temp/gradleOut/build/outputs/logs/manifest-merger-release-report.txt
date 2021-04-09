@@ -10,7 +10,7 @@ INJECTED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\Andro
 INJECTED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\AndroidManifest.xml:2:1-29:12
 INJECTED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\AndroidManifest.xml:2:1-29:12
 	package
-		ADDED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\AndroidManifest.xml:2:70-111
+		ADDED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\AndroidManifest.xml:2:70-113
 		INJECTED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\AndroidManifest.xml
 		INJECTED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\AndroidManifest.xml
 	android:versionName
@@ -18,7 +18,7 @@ INJECTED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\Andro
 		ADDED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\AndroidManifest.xml:2:1-29:12
 		INJECTED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\AndroidManifest.xml
 	xmlns:tools
-		ADDED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\AndroidManifest.xml:2:112-158
+		ADDED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\AndroidManifest.xml:2:114-160
 	android:versionCode
 		INJECTED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\AndroidManifest.xml
 		ADDED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\AndroidManifest.xml:2:1-29:12
@@ -26,7 +26,7 @@ INJECTED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\Andro
 	xmlns:android
 		ADDED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\AndroidManifest.xml:2:11-69
 	android:installLocation
-		ADDED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\AndroidManifest.xml:2:159-199
+		ADDED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\AndroidManifest.xml:2:161-201
 supports-screens
 ADDED from C:\Unity\AR_Tamagotchi\AR_Tamagotchi\Temp\gradleOut\src\main\AndroidManifest.xml:3:3-163
 	android:largeScreens

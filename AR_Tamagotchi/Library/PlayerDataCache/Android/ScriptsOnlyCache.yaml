@@ -1737,4 +1737,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/AR_Main_Start.unity
   - Assets/Scenes/AR_Main_FinoMarker.unity
   - Assets/Scenes/AR_Main_FinoMarker_Extended.unity
-  playerPath: C:/Unity/AR_Tamagotchi/AR_Tamagotchi/v4.2.apk
+  playerPath: C:/Unity/AR_Tamagotchi/AR_Tamagotchi/v4.4.apk

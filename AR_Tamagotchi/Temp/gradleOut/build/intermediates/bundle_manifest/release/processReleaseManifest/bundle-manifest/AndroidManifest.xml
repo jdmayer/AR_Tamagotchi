@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.DefaultCompany.ARTamagotchi"
+    package="com.DefaultCompany.TheFinoProject"
     android:installLocation="preferExternal"
     android:versionCode="1"
     android:versionName="0.1" >
@@ -75,7 +75,7 @@
 
         <meta-data
             android:name="unity.build-id"
-            android:value="526c26c3-9325-44ee-95d7-9c57c6569882" />
+            android:value="3cc54d63-3481-42ee-9c84-f683ef79f720" />
         <meta-data
             android:name="unity.splash-mode"
             android:value="0" />
