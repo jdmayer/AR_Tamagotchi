@@ -352,6 +352,7 @@ namespace Interaction
                     _vegetation.transform.position, _vegetation.transform.rotation, gameObject.transform);
                 newVegetation.transform.localScale = _vegetation.transform.localScale;
                 newVegetation.AddComponent<BoxCollider>();
+                newVegetation.name = Constants.Vegetation;
 
                 Destroy(_vegetation);
                 _vegetation = newVegetation;
