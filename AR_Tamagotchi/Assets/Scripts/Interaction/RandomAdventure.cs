@@ -2,14 +2,12 @@
 using Item;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utils;
 using Vuforia;
-using static UI.DialogManager;
 
 /// <summary>
 /// Author: Janine Mayer
@@ -74,8 +72,6 @@ namespace Interaction
             else if (State == AdventureState.IsInactive)
             {
                 CheckForInteraction();
-
-
             }
             else if (State == AdventureState.IsActive || State == AdventureState.IsBeingAttacked || State == AdventureState.IsFighting)
             {
@@ -134,6 +130,8 @@ namespace Interaction
             _exclamationMark.SetActive(true);
             _questionMark.SetActive(false);
             _vegetation.SetActive(false);
+
+            Player.StartAdventure();
 
             if (Random.Range(0, 100) <= PossibilityOfGem)
             {
@@ -262,8 +260,11 @@ namespace Interaction
             State = AdventureState.IsDone;
             StopCoroutine("UpdateEnemyStatusBarPosition");
             _dialogManager.StartDialog(_enemy.LoseDialog, CreateRandomGem);
+            Player.ExperiencePoints += _enemy.Level * 10;
+
             Destroy(_enemy.StatusBar.gameObject);
             Destroy(_adventureObject);
+
         }
 
         public void LoseFight()
@@ -271,6 +272,7 @@ namespace Interaction
             State = AdventureState.IsDone;
             StopCoroutine("UpdateEnemyStatusBarPosition");
             _dialogManager.StartDialog(_enemy.WinDialog, ReturnToMainScene);
+
             Destroy(_enemy.StatusBar.gameObject);
             Destroy(_adventureObject);
         }
@@ -302,6 +304,8 @@ namespace Interaction
             {
                 return;
             }
+
+            Player.StopAdventure();
 
             if (_adventureObject != null)
             {

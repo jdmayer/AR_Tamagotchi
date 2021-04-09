@@ -23,10 +23,11 @@ namespace Item
 
         public void UseGemStone(Character.Character player)
         {
+            Debug.Log("Use Gem");
             switch (_gemType)
             {
                 case GemType.Health:
-                    player.Health = player.Health + _power;
+                    player.Health += _power;
                     break;
                 case GemType.Experience:
                     player.ExperiencePoints += _power;
