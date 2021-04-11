@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - Character.Tamagotchi
     - GameOverPage
+    - InputName
     - Monobehaviours.AnimatorOverrider
     - Monobehaviours.SwitchScene
     - NameTransfer
@@ -11,6 +12,7 @@ ScriptsOnlyBuild:
     - RecognizeTeddy
     - SkinChanger
     - SleepFunction
+    - StartPage
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -21,6 +23,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.InputField
     - UnityEngine.UI.Text
     Vuforia.UnityExtensions.dll:
     - Vuforia.ImageTargetBehaviour
@@ -96,8 +99,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10442}
     - Class: 114
-      Script: {instanceID: 10444}
-    - Class: 114
       Script: {instanceID: 10560}
     - Class: 114
       Script: {instanceID: 10682}
@@ -123,11 +124,98 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11746}
     - Class: 114
       Script: {instanceID: 11766}
-    - Class: 114
-      Script: {instanceID: 13844}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 132
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 137
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 221
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/AR_Main_Start.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 90
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 9726}
+    - Class: 114
+      Script: {instanceID: 9880}
+    - Class: 114
+      Script: {instanceID: 9922}
+    - Class: 114
+      Script: {instanceID: 10066}
+    - Class: 114
+      Script: {instanceID: 10200}
+    - Class: 114
+      Script: {instanceID: 10304}
+    - Class: 114
+      Script: {instanceID: 10354}
+    - Class: 114
+      Script: {instanceID: 10442}
+    - Class: 114
+      Script: {instanceID: 10444}
+    - Class: 114
+      Script: {instanceID: 10856}
+    - Class: 114
+      Script: {instanceID: 11044}
+    - Class: 114
+      Script: {instanceID: 11318}
+    - Class: 114
+      Script: {instanceID: 11746}
+    - Class: 114
+      Script: {instanceID: 24718}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 132
       Script: {instanceID: 0}
     - Class: 136
       Script: {instanceID: 0}
@@ -144,8 +232,6 @@ ScriptsOnlyBuild:
     - Class: 205
       Script: {instanceID: 0}
     - Class: 213
-      Script: {instanceID: 0}
-    - Class: 221
       Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
@@ -1502,5 +1588,6 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 13
   scenePathNames:
+  - Assets/Scenes/AR_Main_Start.unity
   - Assets/Scenes/AR_Main_FinoMarker.unity
   playerPath: C:/Users/helen/AR_Tamagotchi/AR_Tamagotchi/Fino.apk

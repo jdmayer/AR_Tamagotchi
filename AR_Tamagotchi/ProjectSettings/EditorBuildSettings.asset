@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/AR_Main_Start.unity
     guid: 78b97f5636c61364a90146b4116668c0
   - enabled: 1
